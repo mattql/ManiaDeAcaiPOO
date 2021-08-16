@@ -23,7 +23,7 @@ public class AdministradorVO {
 		
 		//Senha do ADM
 		public String getsenhaADM() {
-			return loginADM;
+			return senhaADM;
 		}
 		public String setsenhaADM(String senhaADM) {
 			return this.senhaADM = senhaADM;
