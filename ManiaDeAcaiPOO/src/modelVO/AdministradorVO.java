@@ -10,10 +10,11 @@ public class AdministradorVO {
 		}
 		public String setloginADM(String loginADM) {
 			if (loginADM == null){
+				System.out.println("Digite algo valido");
 			}
 			else {
-				if(loginADM.equals("seuze")) {
-					
+				if(loginADM.equals(" ")) {
+					System.out.println("Login invalido");
 				}
 				else
 					this.loginADM = loginADM;
@@ -26,6 +27,16 @@ public class AdministradorVO {
 			return senhaADM;
 		}
 		public String setsenhaADM(String senhaADM) {
-			return this.senhaADM = senhaADM;
+			if (senhaADM == null) {
+				System.out.println("Digite algo valido");
+			}
+			else {
+				if(senhaADM.equals(" ")) {
+					System.out.println("Login invalido");
+				}
+				else
+					this.senhaADM = senhaADM;	
+			}
+			return senhaADM;
 		}
 }
