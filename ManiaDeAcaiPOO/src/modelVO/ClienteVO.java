@@ -4,11 +4,9 @@ import java.util.*;
 
 public class ClienteVO {
 	private String nomeCliente;
-<<<<<<< HEAD
 	private String enderecoCliente;
 	private String telefoneCliente;
 	private Date dataPedido;
-	
 	
 	//Nome do Cliente
 	public String getNomeCliente() {
@@ -17,23 +15,11 @@ public class ClienteVO {
 	public void setNomeCliente(String nomeCliente) {
 		if(nomeCliente.isEmpty()) {
 			System.out.println("Nome inválido.");
-=======
-	private String telefoneCliente;
-	
-	//Nome do Cliente.
-	public String getnomeCliente() {
-		return nomeCliente;
-	}
-	public void setnomecliente(String nomeCliente) {
-		if (nomeCliente.isEmpty()) {
-			System.out.println("Nome inválido");
->>>>>>> a3b51840906d31390e2104bbbbf1463f29fa779f
 		}
 		else
 			this.nomeCliente = nomeCliente;
 	}
 	
-<<<<<<< HEAD
 	//Endereço do Cliente
 	public String getEnderecoCliente() {
 		return enderecoCliente;
@@ -66,19 +52,4 @@ public class ClienteVO {
 		dataPedido = new Date();
 		this.dataPedido = dataPedido;
 	}
-
-	
-=======
-	//Telefone do Cliente.
-	public String gettelefoneCliente() {
-		return telefoneCliente;
-	}
-	public void setnomeCliente(String nomeCliente) {
-		if (nomeCliente.isEmpty()) {
-			System.out.println("Telefone Inválido");
-		}
-		else 
-			this.nomeCliente = nomeCliente;
-	}
->>>>>>> a3b51840906d31390e2104bbbbf1463f29fa779f
 }
