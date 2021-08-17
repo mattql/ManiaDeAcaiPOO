@@ -14,7 +14,7 @@ public class UsuarioVO {
 			
 		}
 		else {
-			if(loginUsuario.equals("")) {
+			if(loginUsuario.equals(" ")) {
 				
 			}
 			else
