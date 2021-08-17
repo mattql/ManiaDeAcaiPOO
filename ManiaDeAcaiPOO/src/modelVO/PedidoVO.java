@@ -2,7 +2,7 @@ package modelVO;
 import java.util.*;
 
 public class PedidoVO {
-  private Date dataPedido;
+  public Date dataPedido;
   
   //Data do Pedido
 	public Date getDataPedido() {
