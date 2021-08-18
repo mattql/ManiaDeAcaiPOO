@@ -24,7 +24,7 @@ public class ProdutoVO {
 		public String getnomeProduto() {
 			return nomeProduto;
 		}
-		public String setnomeProduto(String nomeProduto) {
+		public void setnomeProduto(String nomeProduto) {
 			if (nomeProduto == null) {
 				System.out.println("Digite algo valido");
 			}
