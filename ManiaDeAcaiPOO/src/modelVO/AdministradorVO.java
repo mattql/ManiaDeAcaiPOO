@@ -14,10 +14,8 @@ public class AdministradorVO {
 			}
 			else {
 				if(loginADM.equals(" ")) {
-					System.out.println("Login invalido");
-				}
-				else
 					this.loginADM = loginADM;
+				}		
 			}
 		}
 		
@@ -31,10 +29,8 @@ public class AdministradorVO {
 			}
 			else {
 				if(senhaADM.equals(" ")) {
-					System.out.println("Login invalido");
-				}
-				else
-					this.senhaADM = senhaADM;	
+					this.senhaADM = senhaADM;
+				}					
 			}
 		}
 }
