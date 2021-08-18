@@ -8,7 +8,7 @@ public class AdministradorVO {
 		public String getloginADM() {
 			return loginADM;
 		}
-		public String setloginADM(String loginADM) {
+		public void setloginADM(String loginADM) {
 			if (loginADM == null){
 				System.out.println("Digite algo valido");
 			}
@@ -25,7 +25,7 @@ public class AdministradorVO {
 		public String getsenhaADM() {
 			return senhaADM;
 		}
-		public String setsenhaADM(String senhaADM) {
+		public void setsenhaADM(String senhaADM) {
 			if (senhaADM == null) {
 				System.out.println("Digite algo valido");
 			}
