@@ -10,7 +10,7 @@ public class UsuarioVO {
 		return loginUsuario;
 	}
 	public void setLogin(String loginUsuario) {
-		if (loginUsuario==null) {
+		if (loginUsuario == null) {
 			
 		}
 		else {
@@ -27,6 +27,15 @@ public class UsuarioVO {
 		return senhaUsuario;
 	}
 	public void setSenha(String senhaUsuario) {
-		this.senhaUsuario = senhaUsuario;
+		if(senhaUsuario == null) {
+			System.out.println("Digite algo valido");
+		}		
+			else {
+				if(senhaUsuario.Equals(" ")) {
+					System.out.println("Login invalido");
+				}
+				else
+					this.senhaUsuario = senhaUsuario;
+			}
 	}
 }

@@ -3,10 +3,24 @@ import java.util.*;
 
 
 public class ClienteVO {
+	private int idCliente;
 	private String nomeCliente;
 	private String enderecoCliente;
 	private String telefoneCliente;
-	private Date dataPedido;
+	
+	
+	//ID do Cliente
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(int idCliente) {
+		if(idCliente < 0) {
+			System.out.println("ID inválido.");
+		}
+		else
+			this.idCliente = idCliente;
+	}
+	
 	
 	//Nome do Cliente
 	public String getNomeCliente() {
@@ -32,6 +46,7 @@ public class ClienteVO {
 			this.enderecoCliente = enderecoCliente;
 	}
 	
+	
 	//Telefone do Cliente
 	public String getTelefoneCliente() {
 		return telefoneCliente;
@@ -42,14 +57,5 @@ public class ClienteVO {
 		}
 		else
 			this.telefoneCliente = telefoneCliente;
-	}
-	
-	//Data do Pedido
-	public Date getDataPedido() {
-		return dataPedido;
-	}
-	public void setDataPedido(Date dataPedido) {
-		dataPedido = new Date();
-		this.dataPedido = dataPedido;
 	}
 }

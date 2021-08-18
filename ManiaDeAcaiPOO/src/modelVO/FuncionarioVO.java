@@ -1,10 +1,22 @@
 package modelVO;
 
 public class FuncionarioVO {
+	private int idFuncionario;
 	private String nomeFuncionario;
 	private String telefoneFuncionario;
 	
 	
+	//ID do Funcionário
+	public int getIdFuncionario() {
+		return idFuncionario;
+	}
+	public void setIdFuncionario(int idFuncionario) {
+		if(idFuncionario < 0) {
+			System.out.println("ID inválido.");
+		}
+		else
+			this.idFuncionario = idFuncionario;
+	}
 	
 	
 	//Nome do Funcionário

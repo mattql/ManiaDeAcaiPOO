@@ -1,11 +1,26 @@
 package modelVO;
 
 public class ProdutoVO {
+		private int idProduto;
 		private String nomeProduto;
 		private double precoProduto;
 		private String categoriaProduto;
 		
-		//Nomde do Produto.
+		
+		//ID do Produto
+		public int getIdProduto() {
+			return idProduto;
+		}
+		public void setIdProduto(int idProduto) {
+			if(idProduto < 0) {
+				System.out.println("ID inválido.");
+			}
+			else
+				this.idProduto = idProduto;
+		}
+		
+		
+		//Nome do Produto
 		public String getnomeProduto() {
 			return nomeProduto;
 		}
@@ -20,12 +35,10 @@ public class ProdutoVO {
 				else
 					this.nomeProduto = nomeProduto;
 			}
-		return nomeProduto;
 		}
 		
 		
-		
-		//Preco do Produto.
+		//Preço do Produto
 		public double getprecoProduto() {
 			return precoProduto;
 		}
@@ -37,15 +50,14 @@ public class ProdutoVO {
 				this.precoProduto = precoProduto;
 		}
 		
-
-
-		//Categoria do Produto.
+		
+		//Categoria do Produto
 		public String getcategoriaProduto() {
 			return categoriaProduto;
 		}
 		public void setcategoriaProduto(String categoriaProduto) {
 			if (categoriaProduto == null) {
-				System.out.println("Digite algo valigo!");
+				System.out.println("Digite algo valido!");
 			}
 			else{
 					if(categoriaProduto.equals(" ")) {

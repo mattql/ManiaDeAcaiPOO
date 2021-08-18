@@ -19,7 +19,6 @@ public class AdministradorVO {
 				else
 					this.loginADM = loginADM;
 			}
-			return loginADM;
 		}
 		
 		//Senha do ADM
@@ -37,6 +36,5 @@ public class AdministradorVO {
 				else
 					this.senhaADM = senhaADM;	
 			}
-			return senhaADM;
 		}
 }
