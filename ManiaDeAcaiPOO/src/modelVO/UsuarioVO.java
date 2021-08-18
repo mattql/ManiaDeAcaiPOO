@@ -31,7 +31,7 @@ public class UsuarioVO {
 			System.out.println("Digite algo valido");
 		}		
 			else {
-				if(senhaUsuario.Equals(" ")) {
+				if(senhaUsuario.equals(" ")) {
 					System.out.println("Login invalido");
 				}
 				else
