@@ -14,9 +14,9 @@ public class UsuarioVO {
 			
 		}
 		else {
-			if(loginUsuario.equals(" ")) {
+			//if(loginUsuario.equals(" ")) {
 				this.loginUsuario = loginUsuario;
-			}	
+			//}	
 		}
 	}
 	
@@ -29,9 +29,9 @@ public class UsuarioVO {
 			System.out.println("Digite algo valido");
 		}		
 			else {
-				if(senhaUsuario.equals(" ")) {
+				//if(senhaUsuario.equals(" ")) {
 					this.senhaUsuario = senhaUsuario;
-				}	
+				//}	
 			}
 	}
 }

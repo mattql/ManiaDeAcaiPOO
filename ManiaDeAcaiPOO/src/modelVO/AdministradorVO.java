@@ -13,9 +13,9 @@ public class AdministradorVO {
 				System.out.println("Digite algo valido");
 			}
 			else {
-				if(loginADM.equals(" ")) {
+				//if(loginADM.equals(" ")) {
 					this.loginADM = loginADM;
-				}		
+				//}		
 			}
 		}
 		
@@ -28,9 +28,9 @@ public class AdministradorVO {
 				System.out.println("Digite algo valido");
 			}
 			else {
-				if(senhaADM.equals(" ")) {
+				//if(senhaADM.equals(" ")) {
 					this.senhaADM = senhaADM;
-				}					
+				//}					
 			}
 		}
 }
