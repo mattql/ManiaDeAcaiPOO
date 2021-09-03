@@ -1,5 +1,4 @@
 package modelVO;
-import java.util.*;
 
 
 public class ClienteVO {
@@ -27,7 +26,7 @@ public class ClienteVO {
 		return nomeCliente;
 	}
 	public void setNomeCliente(String nomeCliente) {
-		if(nomeCliente.isEmpty()) {
+		if(nomeCliente == null) {
 			System.out.println("Nome inválido.");
 		}
 		else
@@ -39,7 +38,7 @@ public class ClienteVO {
 		return enderecoCliente;
 	}
 	public void setEnderecoCliente(String enderecoCliente) {
-		if(enderecoCliente.isEmpty()) {
+		if(enderecoCliente == null) {
 			System.out.println("Endereço inválido.");
 		}
 		else
@@ -52,7 +51,7 @@ public class ClienteVO {
 		return telefoneCliente;
 	}
 	public void setTelefoneCliente(String telefoneCliente) {
-		if(telefoneCliente.isEmpty()) {
+		if(telefoneCliente == null) {
 			System.out.println("Telefone inválido.");
 		}
 		else

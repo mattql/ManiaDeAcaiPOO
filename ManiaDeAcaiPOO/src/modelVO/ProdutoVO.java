@@ -24,7 +24,7 @@ public class ProdutoVO {
 		public String getnomeProduto() {
 			return nomeProduto;
 		}
-		public String setnomeProduto(String nomeProduto) {
+		public void setnomeProduto(String nomeProduto) {
 			if (nomeProduto == null) {
 				System.out.println("Digite algo valido");
 			}
@@ -59,12 +59,7 @@ public class ProdutoVO {
 			if (categoriaProduto == null) {
 				System.out.println("Digite algo valido!");
 			}
-			else{
-					if(categoriaProduto.equals(" ")) {
-						System.out.println("Nome de Categoria invalido");
-					}
-					else
-						this.categoriaProduto = categoriaProduto;
-			}
+			else
+				this.categoriaProduto = categoriaProduto;
 		}
 }

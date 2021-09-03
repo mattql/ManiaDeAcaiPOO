@@ -8,16 +8,14 @@ public class AdministradorVO {
 		public String getloginADM() {
 			return loginADM;
 		}
-		public String setloginADM(String loginADM) {
+		public void setloginADM(String loginADM) {
 			if (loginADM == null){
 				System.out.println("Digite algo valido");
 			}
 			else {
-				if(loginADM.equals(" ")) {
-					System.out.println("Login invalido");
-				}
-				else
+				//if(loginADM.equals(" ")) {
 					this.loginADM = loginADM;
+				//}		
 			}
 		}
 		
@@ -25,17 +23,14 @@ public class AdministradorVO {
 		public String getsenhaADM() {
 			return senhaADM;
 		}
-		public String setsenhaADM(String senhaADM) {
+		public void setsenhaADM(String senhaADM) {
 			if (senhaADM == null) {
 				System.out.println("Digite algo valido");
 			}
 			else {
-				if(senhaADM.equals(" ")) {
-					System.out.println("Login invalido");
-				}
-				else
-					this.senhaADM = senhaADM;	
+				//if(senhaADM.equals(" ")) {
+					this.senhaADM = senhaADM;
+				//}					
 			}
 		}
 }
->>>>>>> ModelVO

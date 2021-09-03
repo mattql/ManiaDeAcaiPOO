@@ -24,7 +24,7 @@ public class FuncionarioVO {
 		return nomeFuncionario;
 	}
 	public void setNomeFuncionario(String nomeFuncionario) {
-		if(nomeFuncionario.isEmpty()) {
+		if(nomeFuncionario == null) {
 			System.out.println("Nome inválido.");
 		}
 		else
@@ -37,7 +37,7 @@ public class FuncionarioVO {
 		return telefoneFuncionario;
 	}
 	public void setTelefoneFuncionario(String telefoneFuncionario) {
-		if(telefoneFuncionario.isEmpty()) {
+		if(telefoneFuncionario == null) {
 			System.out.println("Telefone inválido.");
 		}
 		else
