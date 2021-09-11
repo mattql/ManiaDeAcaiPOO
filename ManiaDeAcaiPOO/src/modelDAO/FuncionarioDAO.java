@@ -22,7 +22,6 @@ public class FuncionarioDAO extends BaseDAO{
 			ptst.setString(3, vo.getTelefoneFuncionario());
 			ptst.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -36,7 +35,6 @@ public class FuncionarioDAO extends BaseDAO{
 			ptst.setInt(1, vo.getIdFuncionario());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -59,7 +57,6 @@ public class FuncionarioDAO extends BaseDAO{
 				funcionario.add(vo);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return funcionario;
@@ -75,7 +72,6 @@ public class FuncionarioDAO extends BaseDAO{
 			ptst.setInt(2, vo.getIdFuncionario());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -90,7 +86,6 @@ public class FuncionarioDAO extends BaseDAO{
 			ptst.setInt(2, vo.getIdFuncionario());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

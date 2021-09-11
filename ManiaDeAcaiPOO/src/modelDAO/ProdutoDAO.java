@@ -62,7 +62,7 @@ public class ProdutoDAO extends BaseDAO{
 		return produtos;
 	}
 	
-	public void editarpreco(ProdutoVO p) {
+	public void editarPreco(ProdutoVO p) {
 		conn = getConnection();
 		String sql = "update Produto set precoProduto = ? where idProduto = ?";
 		PreparedStatement ptst;
@@ -75,7 +75,7 @@ public class ProdutoDAO extends BaseDAO{
 			e.printStackTrace();
 		}
 	}
-	public void editarnome(ProdutoVO p) {
+	public void editarNome(ProdutoVO p) {
 		conn = getConnection();
 		String sql = "update Produto set nomeProduto = ? where idProduto = ?";
 		PreparedStatement ptst;
@@ -89,7 +89,7 @@ public class ProdutoDAO extends BaseDAO{
 		}
 	}
 	
-	public void editarcategoria(ProdutoVO p) {
+	public void editarCategoria(ProdutoVO p) {
 		conn = getConnection();
 		String sql = "update Produto set categoriaProduto = ? where idProduto = ?";
 		PreparedStatement ptst;

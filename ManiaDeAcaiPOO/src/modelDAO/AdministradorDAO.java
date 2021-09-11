@@ -21,7 +21,6 @@ public class AdministradorDAO extends BaseDAO{
 			ptst.setString(2, vo.getsenhaADM());
 			ptst.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -35,7 +34,6 @@ public class AdministradorDAO extends BaseDAO{
 			ptst.setString(1, vo.getloginADM());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -57,7 +55,6 @@ public class AdministradorDAO extends BaseDAO{
 				administrador.add(vo);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return administrador;
@@ -65,7 +62,7 @@ public class AdministradorDAO extends BaseDAO{
 	}
 	
 	
-	public void editarsenha(AdministradorVO vo) {
+	public void editarSenha(AdministradorVO vo) {
 		conn = getConnection();
 		String sql = "update from Administrador set senhaADM = ? where loginADM = ?";
 		PreparedStatement ptst;
@@ -75,12 +72,11 @@ public class AdministradorDAO extends BaseDAO{
 			ptst.setString(2, vo.getloginADM());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public void editarlogin(AdministradorVO vo) {
+	public void editarLogin(AdministradorVO vo) {
 		conn = getConnection();
 		String sql = "update from Administrador set loginADM = ? where loginADM = ?";
 		PreparedStatement ptst;
@@ -90,7 +86,6 @@ public class AdministradorDAO extends BaseDAO{
 			ptst.setString(2, vo.getloginADM());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
