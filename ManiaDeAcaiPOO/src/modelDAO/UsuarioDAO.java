@@ -58,7 +58,7 @@ public class UsuarioDAO extends BaseDAO{
 		return usuarios;
 	}
 	
-	public void editar(UsuarioVO u) {
+	public void editarsenha(UsuarioVO u) {
 		conn = getConnection();
 		String sql = "update Usuario set senhaUsuario = ? where loginUsuario = ?";
 		PreparedStatement ptst;
@@ -66,6 +66,19 @@ public class UsuarioDAO extends BaseDAO{
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1, u.getLogin());
 			ptst.setString(2, u.getSenha());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void editarlogin(UsuarioVO u) {
+		conn = getConnection();
+		String sql = "update Usuario set loginUsuario = ? where loginUsuario = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = conn.prepareStatement(sql);
+			ptst.setString(1, u.getLogin());
+			ptst.setString(2, u.getLogin());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

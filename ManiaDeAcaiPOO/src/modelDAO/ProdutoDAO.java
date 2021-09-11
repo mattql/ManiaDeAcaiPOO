@@ -62,13 +62,40 @@ public class ProdutoDAO extends BaseDAO{
 		return produtos;
 	}
 	
-	public void editar(ProdutoVO p) {
+	public void editarpreco(ProdutoVO p) {
+		conn = getConnection();
+		String sql = "update Produto set precoProduto = ? where idProduto = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = conn.prepareStatement(sql);
+			ptst.setDouble(1, p.getprecoProduto());
+			ptst.setInt(2, p.getIdProduto());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void editarnome(ProdutoVO p) {
 		conn = getConnection();
 		String sql = "update Produto set nomeProduto = ? where idProduto = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1, p.getnomeProduto());
+			ptst.setInt(2, p.getIdProduto());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editarcategoria(ProdutoVO p) {
+		conn = getConnection();
+		String sql = "update Produto set categoriaProduto = ? where idProduto = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = conn.prepareStatement(sql);
+			ptst.setString(1, p.getcategoriaProduto());
 			ptst.setInt(2, p.getIdProduto());
 			ptst.executeUpdate();
 		} catch (SQLException e) {

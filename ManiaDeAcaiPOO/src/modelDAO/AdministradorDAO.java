@@ -63,9 +63,26 @@ public class AdministradorDAO extends BaseDAO{
 		return administrador;
 		
 	}
-	public void editar(AdministradorVO vo) {
+	
+	
+	public void editarsenha(AdministradorVO vo) {
 		conn = getConnection();
 		String sql = "update from Administrador set senhaADM = ? where loginADM = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = conn.prepareStatement(sql);
+			ptst.setString(1, vo.getsenhaADM());
+			ptst.setString(2, vo.getloginADM());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void editarlogin(AdministradorVO vo) {
+		conn = getConnection();
+		String sql = "update from Administrador set loginADM = ? where loginADM = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
