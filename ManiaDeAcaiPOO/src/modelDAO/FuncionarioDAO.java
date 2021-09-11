@@ -65,14 +65,29 @@ public class FuncionarioDAO extends BaseDAO{
 		return funcionario;
 		
 	}
-	public void editar(FuncionarioVO vo) {
+	public void editarNome(FuncionarioVO vo) {
 		conn = getConnection();
-		String sql = "update from Funcionario set idFuncionario = ? where nomeFuncionario = ?";
+		String sql = "update from Funcionario set nomeFuncionario = ? where idFuncionario = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
-			ptst.setInt(1, vo.getIdFuncionario());
-			ptst.setString(2, vo.getNomeFuncionario());
+			ptst.setString(1, vo.getNomeFuncionario());
+			ptst.setInt(2, vo.getIdFuncionario());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void editarTelefone(FuncionarioVO vo) {
+		conn = getConnection();
+		String sql = "update from Funcionario set nomeFuncionario = ? where idFuncionario = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = conn.prepareStatement(sql);
+			ptst.setString(1, vo.getTelefoneFuncionario());
+			ptst.setInt(2, vo.getIdFuncionario());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
