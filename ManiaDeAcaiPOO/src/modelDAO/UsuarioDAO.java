@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelVO.ProdutoVO;
 import modelVO.UsuarioVO;
 
 public class UsuarioDAO extends BaseDAO{
@@ -58,6 +59,21 @@ public class UsuarioDAO extends BaseDAO{
 		return usuarios;
 	}
 	
+	public ResultSet pesquisarPorLogin(UsuarioVO u) {
+		conn = getConnection();
+		String sql = "select * from Usuario where loginusuario = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1, u.getLogin());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+	
 	public void editarSenha(UsuarioVO u) {
 		conn = getConnection();
 		String sql = "update Usuario set senhaUsuario = ? where loginUsuario = ?";
@@ -71,6 +87,7 @@ public class UsuarioDAO extends BaseDAO{
 			e.printStackTrace();
 		}
 	}
+	
 	public void editarLogin(UsuarioVO u) {
 		conn = getConnection();
 		String sql = "update Usuario set loginUsuario = ? where loginUsuario = ?";

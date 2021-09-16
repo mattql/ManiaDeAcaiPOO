@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelVO.FuncionarioVO;
 import modelVO.ProdutoVO;
 
 public class ProdutoDAO extends BaseDAO{
@@ -62,6 +63,51 @@ public class ProdutoDAO extends BaseDAO{
 		return produtos;
 	}
 	
+	public ResultSet pesquisarPorNome(ProdutoVO p) {
+		conn = getConnection();
+		String sql = "select * from Produto where nomeproduto = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1, p.getnomeProduto());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+
+	public ResultSet pesquisarPorPreco(ProdutoVO p) {
+		conn = getConnection();
+		String sql = "select * from Produto where precoproduto = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setDouble(1, p.getprecoProduto());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+	
+	public ResultSet pesquisarPorCategoria(ProdutoVO p) {
+		conn = getConnection();
+		String sql = "select * from Produto where categoriaproduto = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1, p.getcategoriaProduto());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+	
 	public void editarPreco(ProdutoVO p) {
 		conn = getConnection();
 		String sql = "update Produto set precoProduto = ? where idProduto = ?";
@@ -75,6 +121,7 @@ public class ProdutoDAO extends BaseDAO{
 			e.printStackTrace();
 		}
 	}
+	
 	public void editarNome(ProdutoVO p) {
 		conn = getConnection();
 		String sql = "update Produto set nomeProduto = ? where idProduto = ?";

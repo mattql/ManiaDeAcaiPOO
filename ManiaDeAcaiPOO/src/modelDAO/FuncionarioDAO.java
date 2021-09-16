@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelVO.ClienteVO;
 import modelVO.FuncionarioVO;
 
 public class FuncionarioDAO extends BaseDAO{
@@ -26,6 +27,7 @@ public class FuncionarioDAO extends BaseDAO{
 		}
 		
 	}
+	
 	public void removerBylogin(FuncionarioVO vo) {
 		conn = getConnection();
 		String sql = "delete from Funcionario where idFuncionario = ?";
@@ -39,6 +41,7 @@ public class FuncionarioDAO extends BaseDAO{
 		}
 		
 	}
+	
 	public List<FuncionarioVO> listar() {
 		conn = getConnection();
 		String sql = "select * from Funcionario";
@@ -62,6 +65,37 @@ public class FuncionarioDAO extends BaseDAO{
 		return funcionario;
 		
 	}
+	
+	public ResultSet pesquisarPorNome(FuncionarioVO vo) {
+		conn = getConnection();
+		String sql = "select * from Funcionario where nomefuncionario = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1, vo.getNomeFuncionario());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+
+	public ResultSet pesquisarPorTelefone(FuncionarioVO vo) {
+		conn = getConnection();
+		String sql = "select * from Funcionario where telefonefuncionario = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1, vo.getTelefoneFuncionario());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+	
 	public void editarNome(FuncionarioVO vo) {
 		conn = getConnection();
 		String sql = "update from Funcionario set nomeFuncionario = ? where idFuncionario = ?";

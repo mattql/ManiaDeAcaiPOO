@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelVO.ClienteVO;
+import modelVO.PedidoVO;
 
 public class ClienteDAO extends BaseDAO{
 	public void inserir(ClienteVO c) {
@@ -60,6 +61,51 @@ public class ClienteDAO extends BaseDAO{
 			e.printStackTrace();
 		}
 		return clientes;
+	}
+	
+	public ResultSet pesquisarPorNome(ClienteVO c) {
+		conn = getConnection();
+		String sql = "select * from Cliente where nomecliente = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1, c.getNomeCliente());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+	
+	public ResultSet pesquisarPorEndereco(ClienteVO c) {
+		conn = getConnection();
+		String sql = "select * from Cliente where enderecocliente = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1, c.getEnderecoCliente());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+	
+	public ResultSet pesquisarPorTelefone(ClienteVO c) {
+		conn = getConnection();
+		String sql = "select * from Cliente where telefonecliente = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1, c.getTelefoneCliente());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
 	}
 	
 	public void editarNome(ClienteVO c) {

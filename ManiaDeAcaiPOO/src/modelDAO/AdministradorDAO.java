@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelVO.AdministradorVO;
+import modelVO.UsuarioVO;
 
 public class AdministradorDAO extends BaseDAO{
 	
@@ -25,6 +26,7 @@ public class AdministradorDAO extends BaseDAO{
 		}
 		
 	}
+	
 	public void removerBylogin(AdministradorVO vo) {
 		conn = getConnection();
 		String sql = "delete from Administrador where loginADM = ?";
@@ -38,6 +40,7 @@ public class AdministradorDAO extends BaseDAO{
 		}
 		
 	}
+	
 	public List<AdministradorVO> listar() {
 		conn = getConnection();
 		String sql = "select * from Administrador";
@@ -61,6 +64,20 @@ public class AdministradorDAO extends BaseDAO{
 		
 	}
 	
+	public ResultSet pesquisarPorLogin(AdministradorVO vo) {
+		conn = getConnection();
+		String sql = "select * from Administrador where loginusuario = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1, vo.getloginADM());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
 	
 	public void editarSenha(AdministradorVO vo) {
 		conn = getConnection();

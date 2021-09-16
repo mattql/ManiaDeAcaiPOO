@@ -88,6 +88,50 @@ public class PedidoDAO extends BaseDAO{
 		return pedidos;
 	}
 	
+	public ResultSet pesquisarPorData(PedidoVO pe) {
+		conn = getConnection();
+		String sql = "select * from Pedido where datapedido = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setDate(1, new java.sql.Date(pe.getDataPedido().getTime().getTime()));
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+
+	public ResultSet pesquisarPorCliente(PedidoVO pe) {
+		conn = getConnection();
+		String sql = "select * from Pedido where cod_cliente = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setInt(1, pe.getCliente().getIdCliente());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+
+	public ResultSet pesquisarPorStatus(PedidoVO pe) {
+		conn = getConnection();
+		String sql = "select * from Pedido where statuspedido = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1, pe.getStatusPedido());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
 	
 	public void editarStatusPedido(PedidoVO pe) {
 		conn = getConnection();
