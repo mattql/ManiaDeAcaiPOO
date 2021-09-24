@@ -38,7 +38,7 @@ public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
     public abstract void inserir(VO vo);
     public abstract void remover(VO vo);
     public abstract void editar(VO vo);
-    public abstract ResultSet listar(VO vo);
+    public abstract ResultSet listar();
     public abstract ResultSet pesquisarPorID(VO vo);
     public abstract ResultSet pesquisarPorNome(VO vo);
 }

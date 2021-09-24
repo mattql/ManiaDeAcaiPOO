@@ -10,37 +10,199 @@ import java.util.List;
 import modelVO.ClienteVO;
 import modelVO.PedidoVO;
 
-public class ClienteDAO extends BaseDAO{
-	public void inserir(ClienteVO c) {
-		conn = getConnection();
-		String sql = "insert into Cliente (idCliente, nomeCliente, enderecoCliente, telefoneCliente) values (?, ?, ?, ?)";
+public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
+	@Override
+	public void inserir(VO vo) {
+		String sql = "insert into Cliente (nomeCliente, enderecoCliente, telefoneCliente, emailCliente) values (?, ?, ?, ?)";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setInt(1, c.getIdCliente());
-			ptst.setString(2, c.getNomeCliente());
-			ptst.setString(3, c.getEnderecoCliente());
-			ptst.setString(4, c.getTelefoneCliente());
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ptst.setString(1, vo.getNome());
+			ptst.setString(2, vo.getEndereco());
+			ptst.setString(3, vo.getTelefone());
+			ptst.setString(4, vo.getEmail());
+			
+			int affectedRows = ptst.executeUpdate();
+			
+			if(affectedRows == 0) {
+				throw new SQLException("A inserção falhou, nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if(generatedKeys.next()) {
+				vo.setIdPessoa(generatedKeys.getInt(1));
+			}
+			
 			ptst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void remover(ClienteVO c) {
-		conn = getConnection();
+
+	@Override
+	public void remover(VO vo) {
 		String sql = "delete from Cliente where idCliente = ?";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setInt(1, c.getIdCliente());
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setInt(1, vo.getIdPessoa());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void editar(VO vo) {
+		String sql = "update Cliente set nomeCliente = ? where idCliente = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getNome());
+			ptst.setInt(2, vo.getIdPessoa());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public List<ClienteVO> listar() {
+	public void editarEndereco(VO vo) {
+		String sql = "update Cliente set enderecoCliente = ? where idCliente = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getEndereco());
+			ptst.setInt(2, vo.getIdPessoa());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editarTelefone(VO vo) {
+		String sql = "update Cliente set telefoneoCliente = ? where idCliente = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getTelefone());
+			ptst.setInt(2, vo.getIdPessoa());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editarEmail(VO vo) {
+		String sql = "update Cliente set emailCliente = ? where idCliente = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getEmail());
+			ptst.setInt(2, vo.getIdPessoa());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public ResultSet listar() {
+		String sql = "select * from Cliente";
+		ResultSet rs = null;
+		Statement st;
+		List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+		try {
+			st = getConnection().createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				ClienteVO vo = new ClienteVO();
+				vo.setIdPessoa(rs.getInt("idCliente"));
+				vo.setNome(rs.getString("nomeCliente"));
+				vo.setEndereco(rs.getString("enderecoCliente"));
+				vo.setTelefone(rs.getString("telefoneCliente"));
+				vo.setEmail(rs.getString("emailCliente"));
+				clientes.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	@Override
+	public ResultSet pesquisarPorID(VO vo) {
+		String sql = "select * from Cliente where idcliente = ?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setInt(1, vo.getIdPessoa());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	@Override
+	public ResultSet pesquisarPorNome(VO vo) {
+		String sql = "select * from Cliente where nomecliente = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setString(1, vo.getNome());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+	
+	public ResultSet pesquisarPorEndereco(VO vo) {
+		String sql = "select * from Cliente where enderecocliente = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setString(1, vo.getEndereco());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+	
+	public ResultSet pesquisarPorTelefone(VO vo) {
+	
+		String sql = "select * from Cliente where telefonecliente = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setString(1, vo.getTelefone());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+	
+	public ResultSet pesquisarPorEmail(VO vo) {
+		
+		String sql = "select * from Cliente where emailcliente = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setString(1, vo.getEmail());
+				rs = ptst.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return rs;
+	}
+
+	/*public List<ClienteVO> listar() {
 		conn = getConnection();
 		String sql = "select * from Cliente";
 		ResultSet rs;
@@ -62,91 +224,5 @@ public class ClienteDAO extends BaseDAO{
 		}
 		return clientes;
 	}
-	
-	public ResultSet pesquisarPorNome(ClienteVO c) {
-		conn = getConnection();
-		String sql = "select * from Cliente where nomecliente = ?";
-			PreparedStatement ptst;
-			ResultSet rs = null;
-			try {
-				ptst = conn.prepareStatement(sql);
-				ptst.setString(1, c.getNomeCliente());
-				rs = ptst.executeQuery();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return rs;
-	}
-	
-	public ResultSet pesquisarPorEndereco(ClienteVO c) {
-		conn = getConnection();
-		String sql = "select * from Cliente where enderecocliente = ?";
-			PreparedStatement ptst;
-			ResultSet rs = null;
-			try {
-				ptst = conn.prepareStatement(sql);
-				ptst.setString(1, c.getEnderecoCliente());
-				rs = ptst.executeQuery();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return rs;
-	}
-	
-	public ResultSet pesquisarPorTelefone(ClienteVO c) {
-		conn = getConnection();
-		String sql = "select * from Cliente where telefonecliente = ?";
-			PreparedStatement ptst;
-			ResultSet rs = null;
-			try {
-				ptst = conn.prepareStatement(sql);
-				ptst.setString(1, c.getTelefoneCliente());
-				rs = ptst.executeQuery();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return rs;
-	}
-	
-	public void editarNome(ClienteVO c) {
-		conn = getConnection();
-		String sql = "update Cliente set nomeCliente = ? where idCliente = ?";
-		PreparedStatement ptst;
-		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1, c.getNomeCliente());
-			ptst.setInt(2, c.getIdCliente());
-			ptst.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void editarEndereco(ClienteVO c) {
-		conn = getConnection();
-		String sql = "update Cliente set enderecoCliente = ? where idCliente = ?";
-		PreparedStatement ptst;
-		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1, c.getEnderecoCliente());
-			ptst.setInt(2, c.getIdCliente());
-			ptst.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void editarTelefone(ClienteVO c) {
-		conn = getConnection();
-		String sql = "update Cliente set telefoneCliente = ? where idCliente = ?";
-		PreparedStatement ptst;
-		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1, c.getTelefoneCliente());
-			ptst.setInt(2, c.getIdCliente());
-			ptst.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+	}*/
 }
