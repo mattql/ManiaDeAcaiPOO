@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelVO.FuncionarioVO;
 import modelVO.UsuarioVO;
 
 public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
@@ -189,10 +190,27 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		return rs;
 	}
 
-	@Override
-	public ResultSet listar() {
-		// TODO Auto-generated method stub
-		return null;
+	public List <VO> listar() {
+		String sql = "select * from Usuario";
+		ResultSet rs;
+		Statement st;
+		List<UsuarioVO> usuario = new ArrayList<UsuarioVO>();
+		try {
+			st = getConnection().createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				UsuarioVO c = new UsuarioVO();
+				c.setLogin(rs.getString("loginUsuario"));
+				c.setSenha(rs.getString("senhaUsuario"));
+				c.setNome(rs.getString("nomeUsuario"));
+				c.setEndereco(rs.getString("enderecoUsuario"));
+				c.setTelefone(rs.getString("salarioFuncionario"));
+				usuario.add(c);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (List<VO>) usuario;
 	}
 	
 	

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelVO.AdministradorVO;
+import modelVO.ClienteVO;
 
 public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 
@@ -102,11 +103,24 @@ public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public ResultSet listar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+	public List <VO> listar() {
+		String sql = "select * from Cliente";
+		ResultSet rs;
+		Statement st;
+		List<AdministradorVO> administrador = new ArrayList<AdministradorVO>();
+		try {
+			st = getConnection().createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				AdministradorVO c = new AdministradorVO();
+				c.setloginADM(rs.getString("logiADM"));
+				c.setsenhaADM(rs.getString("senhaADM"));
+				administrador.add(c);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (List<VO>) administrador;
+	}
 }
