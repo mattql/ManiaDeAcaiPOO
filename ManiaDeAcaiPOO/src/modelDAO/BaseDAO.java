@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
     private static Connection conn = null;
@@ -38,7 +39,7 @@ public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
     public abstract void inserir(VO vo);
     public abstract void remover(VO vo);
     public abstract void editar(VO vo);
-    public abstract ResultSet listar();
+    public abstract List <VO> listar();
     public abstract ResultSet pesquisarPorID(VO vo);
     public abstract ResultSet pesquisarPorNome(VO vo);
 }

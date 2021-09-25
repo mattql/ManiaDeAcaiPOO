@@ -92,9 +92,26 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public ResultSet listar() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VO> listar() {
+		String sql = "select * from Produto";
+		ResultSet rs;
+		Statement st;
+		List<ProdutoVO> produtos = new ArrayList<ProdutoVO>();
+		try {
+			st = getConnection().createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				ProdutoVO p = new ProdutoVO();
+				p.setIdProduto(rs.getInt("idProduto"));
+				p.setnomeProduto(rs.getString("nomeProduto"));
+				p.setprecoProduto(rs.getDouble("precoProduto"));
+				p.setcategoriaProduto(rs.getString("categoriaProduto"));
+				produtos.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (List<VO>) produtos;
 	}
 
 	@Override
@@ -154,26 +171,4 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 			}
 			return rs;
 	}
-	/*public List<ProdutoVO> listar() {
-		conn = getConnection();
-		String sql = "select * from Produto";
-		ResultSet rs;
-		Statement st;
-		List<ProdutoVO> produtos = new ArrayList<ProdutoVO>();
-		try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while(rs.next()) {
-				ProdutoVO p = new ProdutoVO();
-				p.setIdProduto(rs.getInt("idProduto"));
-				p.setnomeProduto(rs.getString("nomeProduto"));
-				p.setprecoProduto(rs.getDouble("precoProduto"));
-				p.setcategoriaProduto(rs.getString("categoriaProduto"));
-				produtos.add(p);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return produtos;
-	}*/
 }

@@ -105,27 +105,27 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public ResultSet listar() {
+	public List <VO> listar() {
 		String sql = "select * from Cliente";
-		ResultSet rs = null;
+		ResultSet rs;
 		Statement st;
 		List<ClienteVO> clientes = new ArrayList<ClienteVO>();
 		try {
 			st = getConnection().createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
-				ClienteVO vo = new ClienteVO();
-				vo.setIdPessoa(rs.getInt("idCliente"));
-				vo.setNome(rs.getString("nomeCliente"));
-				vo.setEndereco(rs.getString("enderecoCliente"));
-				vo.setTelefone(rs.getString("telefoneCliente"));
-				vo.setEmail(rs.getString("emailCliente"));
-				clientes.add(vo);
+				ClienteVO c = new ClienteVO();
+				c.setIdPessoa(rs.getInt("idCliente"));
+				c.setNome(rs.getString("nomeCliente"));
+				c.setEndereco(rs.getString("enderecoCliente"));
+				c.setTelefone(rs.getString("telefoneCliente"));
+				c.setEmail(rs.getString("telefoneCliente"));
+				clientes.add(c);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return rs;
+		return (List<VO>) clientes;
 	}
 
 	@Override
@@ -201,28 +201,4 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 			}
 			return rs;
 	}
-
-	/*public List<ClienteVO> listar() {
-		conn = getConnection();
-		String sql = "select * from Cliente";
-		ResultSet rs;
-		Statement st;
-		List<ClienteVO> clientes = new ArrayList<ClienteVO>();
-		try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while(rs.next()) {
-				ClienteVO c = new ClienteVO();
-				c.setIdCliente(rs.getInt("idCliente"));
-				c.setNomeCliente(rs.getString("nomeCliente"));
-				c.setEnderecoCliente(rs.getString("enderecoCliente"));
-				c.setTelefoneCliente(rs.getString("telefoneCliente"));
-				clientes.add(c);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return clientes;
-	}
-	}*/
 }

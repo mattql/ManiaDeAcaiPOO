@@ -52,13 +52,7 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 	}
 	
 	@Override
-	public ResultSet listar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	/*public List<PedidoVO> listar() {
-		conn = getConnection();
+	public List<VO> listar() {
 		String sql = "select * from Pedido";
 		ResultSet rs;
 		Statement st;
@@ -66,14 +60,14 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 		List<PedidoProdutoVO> pedidoProduto = new ArrayList<PedidoProdutoVO>();
 		
 		try {
-			st = conn.createStatement();
+			st = getConnection().createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
 				PedidoVO pe = new PedidoVO();
 				Calendar calendar = Calendar.getInstance();
 				
 				pe.setIdPedido(rs.getInt("idpedido"));
-				pe.getCliente().setIdCliente(rs.getInt("cod_cliente"));
+				pe.getCliente().setIdPessoa(rs.getInt("cod_cliente"));
 				pe.setQuantidadeProdutos(rs.getInt("quantidadedeprodutos"));
 				pe.setFormaDePagamentoPedido(rs.getString("formadepagamneto"));
 				pe.setStatusPedido(rs.getString("statuspedido"));
@@ -90,38 +84,8 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return pedidos;
+		return (List<VO>) pedidos;
 	}
-	
-	public ResultSet pesquisarPorData(PedidoVO pe) {
-		conn = getConnection();
-		String sql = "select * from Pedido where datapedido = ?";
-			PreparedStatement ptst;
-			ResultSet rs = null;
-			try {
-				ptst = conn.prepareStatement(sql);
-				ptst.setDate(1, new java.sql.Date(pe.getDataPedido().getTime().getTime()));
-				rs = ptst.executeQuery();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return rs;
-	}
-
-	public ResultSet pesquisarPorCliente(PedidoVO pe) {
-		conn = getConnection();
-		String sql = "select * from Pedido where cod_cliente = ?";
-			PreparedStatement ptst;
-			ResultSet rs = null;
-			try {
-				ptst = conn.prepareStatement(sql);
-				ptst.setInt(1, pe.getCliente().getIdCliente());
-				rs = ptst.executeQuery();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return rs;
-	}*/
 
 	@Override
 	public void editar(VO vo) {
@@ -137,7 +101,7 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public void editarQuantidadeDeProdutos(VO vo) {
+	public void editarQuantidade(VO vo) {
 		String sql = "update Pedido set quantidadedeprodutos = ? where idpedido = ?";
 		PreparedStatement ptst;
 		try {
