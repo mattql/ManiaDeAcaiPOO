@@ -11,9 +11,9 @@ import modelVO.ClienteVO;
 import modelVO.FuncionarioVO;
 import modelVO.ProdutoVO;
 
-public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
+public class ProdutoDAO extends BaseDAO<ProdutoVO>{
 	@Override
-	public void inserir(VO vo) {
+	public void inserir(ProdutoVO vo) {
 		String sql = "insert into Produto (nomeProduto, precoProduto, categoriaProduto) values (?, ?, ?)";
 		PreparedStatement ptst;
 		try {
@@ -32,14 +32,13 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 				vo.setIdProduto(generatedKeys.getInt(1));
 			}
 			
-			ptst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void remover(VO vo) {
+	public void remover(ProdutoVO vo) {
 		String sql = "delete from Produto where idProduto = ?";
 		PreparedStatement ptst;
 		try {
@@ -52,7 +51,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public void editar(VO vo) {
+	public void editar(ProdutoVO vo) {
 		String sql = "update Produto set nomeProduto = ? where idProduto = ?";
 		PreparedStatement ptst;
 		try {
@@ -65,7 +64,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 		}
 	}
 
-	public void editarPreco(VO vo) {
+	public void editarPreco(ProdutoVO vo) {
 		String sql = "update Produto set precoProduto = ? where idProduto = ?";
 		PreparedStatement ptst;
 		try {
@@ -78,7 +77,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 		}
 	}
 
-	public void editarCategoria(VO vo) {
+	public void editarCategoria(ProdutoVO vo) {
 		String sql = "update Produto set categoriaProduto = ? where idProduto = ?";
 		PreparedStatement ptst;
 		try {
@@ -92,7 +91,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public List<VO> listar() {
+	public List<ProdutoVO> listar() {
 		String sql = "select * from Produto";
 		ResultSet rs;
 		Statement st;
@@ -111,11 +110,11 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return (List<VO>) produtos;
+		return produtos;
 	}
 
 	@Override
-	public ResultSet pesquisarPorID(VO vo) {
+	public ResultSet pesquisarPorID(ProdutoVO vo) {
 		String sql = "select * from Produto where idProduto = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -130,7 +129,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 	}
 	
 	@Override
-	public ResultSet pesquisarPorNome(VO vo) {
+	public ResultSet pesquisarPorNome(ProdutoVO vo) {
 		String sql = "select * from Produto where nomeProduto = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -144,7 +143,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 		return rs;
 	}
 
-	public ResultSet pesquisarPorCategoria(VO vo) {
+	public ResultSet pesquisarPorCategoria(ProdutoVO vo) {
 		String sql = "select * from Produto where categoriaproduto = ?";
 			PreparedStatement ptst;
 			ResultSet rs = null;
@@ -158,7 +157,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO<VO>{
 			return rs;
 	}
 	
-	public ResultSet pesquisarPorPreco(VO vo) {
+	public ResultSet pesquisarPorPreco(ProdutoVO vo) {
 		String sql = "select * from Produto where precoproduto = ?";
 			PreparedStatement ptst;
 			ResultSet rs = null;

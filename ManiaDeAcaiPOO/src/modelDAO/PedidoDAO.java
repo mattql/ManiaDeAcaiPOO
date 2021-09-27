@@ -15,9 +15,9 @@ import modelVO.PedidoProdutoVO;
 import modelVO.PedidoVO;
 import modelVO.ProdutoVO;
 
-public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{ 	
+public class PedidoDAO extends BaseDAO<PedidoVO>{ 	
 	@Override
-	public void inserir(VO vo) {
+	public void inserir(PedidoVO vo) {
 		String sql = "insert into Pedido (cod_cliente, quantidadeprodutos, formadepagamento, statuspedido, datapedido, precototalpedido) values (?, ?, ?, ?, ?, ?)";
         PreparedStatement ptst;
     	try {
@@ -39,7 +39,7 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public void remover(VO vo) {
+	public void remover(PedidoVO vo) {
 		String sql = "delete from Pedido where idpedido = ?";
 		PreparedStatement ptst;
 		try {
@@ -52,7 +52,7 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 	}
 	
 	@Override
-	public List<VO> listar() {
+	public List<PedidoVO> listar() {
 		String sql = "select * from Pedido";
 		ResultSet rs;
 		Statement st;
@@ -84,11 +84,11 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return (List<VO>) pedidos;
+		return pedidos;
 	}
 
 	@Override
-	public void editar(VO vo) {
+	public void editar(PedidoVO vo) {
 		String sql = "update Pedido set statuspedido = ? where idpedido = ?";
 		PreparedStatement ptst;
 		try {
@@ -101,7 +101,7 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public void editarQuantidade(VO vo) {
+	public void editarQuantidade(PedidoVO vo) {
 		String sql = "update Pedido set quantidadedeprodutos = ? where idpedido = ?";
 		PreparedStatement ptst;
 		try {
@@ -114,7 +114,7 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 		}
 	}
 
-	public void editarForma(VO vo) {
+	public void editarForma(PedidoVO vo) {
 		String sql = "update Pedido set formadepagamento = ? where idpedido = ?";
 		PreparedStatement ptst;
 		try {
@@ -128,7 +128,7 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 	}
 	
 	@Override
-	public ResultSet pesquisarPorID(VO vo) {
+	public ResultSet pesquisarPorID(PedidoVO vo) {
 		String sql = "select * from Pedido where idpedido = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -143,7 +143,7 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public ResultSet pesquisarPorNome(VO vo) {
+	public ResultSet pesquisarPorNome(PedidoVO vo) {
 		//Pesquisar por nome do cliente
 		String sql = "select * from Pedido where cod_cliente = ?";
 		PreparedStatement ptst;
@@ -158,7 +158,7 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 		return rs;
 	}
 
-	public ResultSet pesquisarPorStatus(VO vo) {
+	public ResultSet pesquisarPorStatus(PedidoVO vo) {
 		String sql = "select * from Pedido where statuspedido = ?";
 			PreparedStatement ptst;
 			ResultSet rs = null;
@@ -172,7 +172,7 @@ public class PedidoDAO<VO extends PedidoVO> extends BaseDAO<VO>{
 			return rs;
 	}
 	
-	public ResultSet pesquisarPorData(VO vo) {
+	public ResultSet pesquisarPorData(PedidoVO vo) {
 		String sql = "select * from Pedido where datapedido = ?";
 			PreparedStatement ptst;
 			ResultSet rs = null;

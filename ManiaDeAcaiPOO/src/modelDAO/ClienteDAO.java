@@ -10,9 +10,9 @@ import java.util.List;
 import modelVO.ClienteVO;
 import modelVO.PedidoVO;
 
-public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
+public class ClienteDAO extends BaseDAO<ClienteVO>{
 	@Override
-	public void inserir(VO vo) {
+	public void inserir(ClienteVO vo) {
 		String sql = "insert into Cliente (nomeCliente, enderecoCliente, telefoneCliente, emailCliente) values (?, ?, ?, ?)";
 		PreparedStatement ptst;
 		try {
@@ -31,15 +31,13 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 			if(generatedKeys.next()) {
 				vo.setIdPessoa(generatedKeys.getInt(1));
 			}
-			
-			ptst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void remover(VO vo) {
+	public void remover(ClienteVO vo) {
 		String sql = "delete from Cliente where idCliente = ?";
 		PreparedStatement ptst;
 		try {
@@ -52,7 +50,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public void editar(VO vo) {
+	public void editar(ClienteVO vo) {
 		String sql = "update Cliente set nomeCliente = ? where idCliente = ?";
 		PreparedStatement ptst;
 		try {
@@ -65,7 +63,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public void editarEndereco(VO vo) {
+	public void editarEndereco(ClienteVO vo) {
 		String sql = "update Cliente set enderecoCliente = ? where idCliente = ?";
 		PreparedStatement ptst;
 		try {
@@ -78,7 +76,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public void editarTelefone(VO vo) {
+	public void editarTelefone(ClienteVO vo) {
 		String sql = "update Cliente set telefoneoCliente = ? where idCliente = ?";
 		PreparedStatement ptst;
 		try {
@@ -91,7 +89,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public void editarEmail(VO vo) {
+	public void editarEmail(ClienteVO vo) {
 		String sql = "update Cliente set emailCliente = ? where idCliente = ?";
 		PreparedStatement ptst;
 		try {
@@ -105,7 +103,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public List <VO> listar() {
+	public List <ClienteVO> listar() {
 		String sql = "select * from Cliente";
 		ResultSet rs;
 		Statement st;
@@ -125,11 +123,11 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return (List<VO>) clientes;
+		return clientes;
 	}
 
 	@Override
-	public ResultSet pesquisarPorID(VO vo) {
+	public ResultSet pesquisarPorID(ClienteVO vo) {
 		String sql = "select * from Cliente where idcliente = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -144,7 +142,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public ResultSet pesquisarPorNome(VO vo) {
+	public ResultSet pesquisarPorNome(ClienteVO vo) {
 		String sql = "select * from Cliente where nomecliente = ?";
 			PreparedStatement ptst;
 			ResultSet rs = null;
@@ -158,7 +156,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 			return rs;
 	}
 	
-	public ResultSet pesquisarPorEndereco(VO vo) {
+	public ResultSet pesquisarPorEndereco(ClienteVO vo) {
 		String sql = "select * from Cliente where enderecocliente = ?";
 			PreparedStatement ptst;
 			ResultSet rs = null;
@@ -172,8 +170,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 			return rs;
 	}
 	
-	public ResultSet pesquisarPorTelefone(VO vo) {
-	
+	public ResultSet pesquisarPorTelefone(ClienteVO vo) {
 		String sql = "select * from Cliente where telefonecliente = ?";
 			PreparedStatement ptst;
 			ResultSet rs = null;
@@ -187,8 +184,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO<VO>{
 			return rs;
 	}
 	
-	public ResultSet pesquisarPorEmail(VO vo) {
-		
+	public ResultSet pesquisarPorEmail(ClienteVO vo) {
 		String sql = "select * from Cliente where emailcliente = ?";
 			PreparedStatement ptst;
 			ResultSet rs = null;
