@@ -10,10 +10,10 @@ import java.util.List;
 import modelVO.FuncionarioVO;
 import modelVO.UsuarioVO;
 
-public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
+public class UsuarioDAO extends BaseDAO<UsuarioVO>{
 
 	@Override
-	public void inserir(VO vo) {
+	public void inserir(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "insert into Usuario (loginUsuario, senhaUsuario, nomeUsuario, enderecoUsuario, telefoneUsuario) values(?, ?, ?, ?, ?)";
 		PreparedStatement ptst; 
@@ -44,7 +44,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public void remover(VO vo) {
+	public void remover(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "delete from Usuario where loginUsuario = ?";
 		PreparedStatement ptst;
@@ -58,7 +58,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public void editar(VO vo) {
+	public void editar(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "update from Usuario set senhaUsuario = ? where loginUsuario = ?";
 		PreparedStatement ptst;
@@ -72,7 +72,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public void editarLogin(VO vo) {
+	public void editarLogin(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "update from Usuario set loginUsuario = ? where senhaUsuario = ?";
 		PreparedStatement ptst;
@@ -86,7 +86,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public void editarNome(VO vo) {
+	public void editarNome(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "update from Usuario set nomeUsuario = ? where loginUsuario = ?";
 		PreparedStatement ptst;
@@ -100,7 +100,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public void editarEndereco(VO vo) {
+	public void editarEndereco(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "update from Usuario set enderecoUsuario = ? where loginUsuario = ?";
 		PreparedStatement ptst;
@@ -114,7 +114,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public void editarTelefone(VO vo) {
+	public void editarTelefone(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "update from Usuario set telefoneUsuario = ? where loginUsuario = ?";
 		PreparedStatement ptst;
@@ -129,7 +129,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public ResultSet pesquisarPorID(VO vo) {
+	public ResultSet pesquisarPorID(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "select * from Usuario where loginUsuario = ?";
 		PreparedStatement ptst;
@@ -145,7 +145,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public ResultSet pesquisarPorNome(VO vo) {
+	public ResultSet pesquisarPorNome(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "select * from Usuario where nomeUsuario = ?";
 		PreparedStatement ptst;
@@ -160,7 +160,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		return rs;
 	}
 	
-	public ResultSet pesquisarPorEndereco(VO vo) {
+	public ResultSet pesquisarPorEndereco(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "select * from Usuario where enderecoUsuario = ?";
 		PreparedStatement ptst;
@@ -175,7 +175,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		return rs;
 	}
 	
-	public ResultSet pesquisarPorTelefone(VO vo) {
+	public ResultSet pesquisarPorTelefone(UsuarioVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "select * from Usuario where telefoneUsuario = ?";
 		PreparedStatement ptst;
@@ -190,7 +190,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		return rs;
 	}
 
-	public List <VO> listar() {
+	public List <UsuarioVO> listar() {
 		String sql = "select * from Usuario";
 		ResultSet rs;
 		Statement st;
@@ -210,7 +210,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return (List<VO>) usuario;
+		return usuario;
 	}
 	
 	

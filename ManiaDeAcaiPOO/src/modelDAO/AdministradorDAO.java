@@ -10,10 +10,10 @@ import java.util.List;
 import modelVO.AdministradorVO;
 import modelVO.ClienteVO;
 
-public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
+public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 
 	@Override
-	public void inserir(VO vo) {
+	public void inserir(AdministradorVO vo) {
 		
 		String sql = "insert into Administrador (loginADM, senhaADM) values(?,?)";
 		PreparedStatement ptst;
@@ -41,7 +41,7 @@ public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public void remover(VO vo) {
+	public void remover(AdministradorVO vo) {
 		String sql = "delete from Administrador where loginADM = ?";
 		PreparedStatement ptst;
 		try {
@@ -54,7 +54,7 @@ public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public void editar(VO vo) {
+	public void editar(AdministradorVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "update from Administrador set senhaADM = ? where loginADM = ?";
 		PreparedStatement ptst;
@@ -68,7 +68,7 @@ public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public void editarLogin(VO vo) {
+	public void editarLogin(AdministradorVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "update from Administrador set loginADM = ? where senhaADM = ?";
 		PreparedStatement ptst;
@@ -83,7 +83,7 @@ public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public ResultSet pesquisarPorID(VO vo) {
+	public ResultSet pesquisarPorID(AdministradorVO vo) {
 		// TODO Auto-generated method stub
 		String sql = "select * from Administrador where loginADM = ?";
 		PreparedStatement ptst;
@@ -99,12 +99,12 @@ public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 	}
 
 	@Override
-	public ResultSet pesquisarPorNome(VO vo) {
+	public ResultSet pesquisarPorNome(AdministradorVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	public List <VO> listar() {
+	public List <AdministradorVO> listar() {
 		String sql = "select * from Cliente";
 		ResultSet rs;
 		Statement st;
@@ -121,6 +121,6 @@ public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return (List<VO>) administrador;
+		return administrador;
 	}
 }
