@@ -1,47 +1,16 @@
 package modelVO;
 
-public class FuncionarioVO {
-	private int idFuncionario;
-	private String nomeFuncionario;
-	private String telefoneFuncionario;
-	
-	
-	//ID do Funcionário
-	public int getIdFuncionario() {
-		return idFuncionario;
+public class FuncionarioVO extends PessoaVO{
+	private double salario;
+
+	public double getSalario() {
+		return salario;
 	}
-	public void setIdFuncionario(int idFuncionario) {
-		if(idFuncionario < 0) {
-			System.out.println("ID inválido.");
-		}
-		else
-			this.idFuncionario = idFuncionario;
+
+	public void setSalario(double salario) {
+		if(salario < 1100) {
+			System.out.println("Salário inválido. Não pode ser menor que o salário mínimo.");
+		} else
+		this.salario = salario;
 	}
-	
-	
-	//Nome do Funcionário
-	public String getNomeFuncionario() {
-		return nomeFuncionario;
-	}
-	public void setNomeFuncionario(String nomeFuncionario) {
-		if(nomeFuncionario == null) {
-			System.out.println("Nome inválido.");
-		}
-		else
-			this.nomeFuncionario = nomeFuncionario;
-	}
-	
-	
-	//Telefone do Funcionário
-	public String getTelefoneFuncionario() {
-		return telefoneFuncionario;
-	}
-	public void setTelefoneFuncionario(String telefoneFuncionario) {
-		if(telefoneFuncionario == null) {
-			System.out.println("Telefone inválido.");
-		}
-		else
-			this.telefoneFuncionario = telefoneFuncionario;
-	}
-	
 }
