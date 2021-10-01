@@ -77,7 +77,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO>{
 	}
 	
 	public void editarTelefone(ClienteVO vo) {
-		String sql = "update Cliente set telefoneoCliente = ? where idCliente = ?";
+		String sql = "update Cliente set telefoneCliente = ? where idCliente = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
