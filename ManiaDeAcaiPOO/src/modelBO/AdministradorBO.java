@@ -11,6 +11,7 @@ import modelVO.AdministradorVO;
 
 public class AdministradorBO implements BaseInterBO<AdministradorVO>{
     AdministradorDAO dao = new AdministradorDAO();
+    AdministradorVO a = new AdministradorVO();
     
 	@Override
 	public void cadastrar(AdministradorVO vo) throws Exception {
@@ -29,7 +30,6 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 
 	@Override
 	public void alterar(AdministradorVO vo) throws Exception {
-
 		try {
             ResultSet rs = dao.pesquisarPorID(vo);
             if(rs.next() == false) {
@@ -44,7 +44,6 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 	}
 	
 	public void alterarlogin(AdministradorVO vo) throws Exception {
-	
 		try {
             ResultSet rs = dao.pesquisarPorID(vo);
             if(rs.next() == false) {
@@ -76,7 +75,7 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 	@Override
 	public List<AdministradorVO> buscar() throws Exception {
 		List<AdministradorVO> vo = new ArrayList<AdministradorVO>();
-		ResultSet rs = dao.pesquisarPorID(c);
+		ResultSet rs = dao.pesquisarPorID(a);
 		try {
 			if(rs.next()) {
 				throw new Exception("Erro ao Listar. ID não existente.");
@@ -105,6 +104,4 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		return null;
 	}
    
-
-
 }

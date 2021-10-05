@@ -7,14 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import modelVO.PedidoProdutoVO;
 import modelVO.PedidoVO;
-import modelVO.UsuarioVO;
 
 public class PedidoProdutoDAO extends BaseDAO<PedidoProdutoVO>{
-	PedidoProdutoDAO dao = new PedidoProdutoDAO();
-	PedidoProdutoVO pp = new PedidoProdutoVO();
-    
 	public void inserir(PedidoProdutoVO[] pp) {
-		String sql = "insert into pedido_produto (idpedidoproduto, cod_pedido, cod_produto) values (?, ?, ?)";
+		String sql = "insert into pedido_produto (cod_pedidoproduto, cod_pedido, cod_produto) values (?, ?, ?)";
 		PreparedStatement ptst;
 		try {
 			for(int i = 0; i < pp.length; i++) {
@@ -30,7 +26,7 @@ public class PedidoProdutoDAO extends BaseDAO<PedidoProdutoVO>{
 	}
 	
 	public void remover(PedidoProdutoVO[] pp) {
-		String sql = "delete from PedidoProduto where idpedidoproduto = ?";
+		String sql = "delete from PedidoProduto where cod_pedidoproduto = ?";
 		PreparedStatement ptst;
 		try {
 			for(int i = 0; i < pp.length; i++) {
@@ -43,57 +39,59 @@ public class PedidoProdutoDAO extends BaseDAO<PedidoProdutoVO>{
 		}
 	}
 	
+	public List<PedidoProdutoVO> listar(PedidoVO pedido) {
+		String sql = "select * from PedidoProduto where codPedido = ?";
+		PreparedStatement ptst;
+		ResultSet rs;
+		List<PedidoProdutoVO> pedidoproduto = new ArrayList<PedidoProdutoVO>();
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setInt(1, pedido.getIdPedido());
+			rs = ptst.executeQuery(sql);
+			while(rs.next()) {
+				PedidoProdutoVO pp = new PedidoProdutoVO();
+				pp.setCodPedidoProduto(rs.getInt("cod_pedidoproduto"));
+				pp.getCod_pedido().setIdPedido(rs.getInt("cod_pedido"));
+				pp.getCod_produto().setIdProduto(rs.getInt("cod_produto"));
+				pedidoproduto.add(pp);				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pedidoproduto;		
+	}
 
 	@Override
 	public void inserir(PedidoProdutoVO vo) {
-		// TODO Auto-generated method stub
-		
+		//Método não utilizado
 	}
 
-	
 	@Override
 	public void remover(PedidoProdutoVO vo) {
-		// TODO Auto-generated method stub
-		
+		//Método não utilizado	
 	}
 
-	
 	@Override
 	public void editar(PedidoProdutoVO vo) {
-		// TODO Auto-generated method stub
-		
+		//Método não utilizado
 	}
 
-	
 	@Override
 	public List<PedidoProdutoVO> listar() {
-		List<PedidoProdutoVO> vo = new ArrayList<PedidoProdutoVO>();
-		ResultSet rs = dao.pesquisarPorID(pp);
-		try {
-			if(rs.next()) {
-				throw new Exception("Erro ao Listar. ID não existente.");
-			} else {
-				vo = dao.listar();
-				return vo;
-			}
-		}
-		catch(SQLException e) {
-			throw new Exception(e.getMessage());
-		}
+		//Método não utilizado
+		return null;
 	}
-	
 
 	@Override
 	public ResultSet pesquisarPorID(PedidoProdutoVO vo) {
-		// TODO Auto-generated method stub
+		//Método não utilizado
 		return null;
 	}
 
-	
 	@Override
 	public ResultSet pesquisarPorNome(PedidoProdutoVO vo) {
-		// TODO Auto-generated method stub
+		//Método não utilizado
 		return null;
 	}
-
+	
 }
