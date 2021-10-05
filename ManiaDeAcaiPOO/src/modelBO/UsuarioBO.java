@@ -2,6 +2,7 @@ package modelBO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import modelDAO.UsuarioDAO;
@@ -9,6 +10,7 @@ import modelVO.UsuarioVO;
 
 public class UsuarioBO implements BaseInterBO<UsuarioVO>{
     UsuarioDAO dao = new UsuarioDAO();
+    UsuarioVO usu = new UsuarioVO();
 
 	@Override
 	public void cadastrar(UsuarioVO vo) throws Exception {
@@ -110,101 +112,114 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 	}
 
 	@Override
-	public void buscar(List<UsuarioVO> vo) throws Exception {
-		UsuarioVO usu = new UsuarioVO();
-        ResultSet rs = dao.pesquisarPorID(usu);
-        try {
-        if(rs.next()) {
-            throw new Exception("Erro ao Buscar. ID não existente.");
-        } else {
-           vo = dao.listar();
-           for(UsuarioVO vo2: vo) {
-        	   System.out.println("{" + vo2.getLogin() + ", " + vo2.getSenha() + ", " + vo2.getEndereco() +
-        			   ", " + vo2.getTelefone() + "}");
-           }
-        }
-    }
-    catch(SQLException e) {
-        throw new Exception(e.getMessage());
-    }
+	public List<UsuarioVO> buscar() throws Exception {
+		List<UsuarioVO> vo = new ArrayList<UsuarioVO>();
+		ResultSet rs = dao.pesquisarPorID(usu);
+		try {
+			if(rs.next()) {
+				throw new Exception("Erro ao Listar. ID não existente.");
+			} else {
+				vo = dao.listar();
+				return vo;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
-
 	
 	@Override
-	public void buscarPorID(UsuarioVO vo) throws Exception {
-		
+	public List<UsuarioVO> buscarPorID(UsuarioVO vo) throws Exception {
+		List<UsuarioVO> usuarios = new ArrayList<UsuarioVO>();
+		ResultSet rs = dao.pesquisarPorID(vo);
 		try {
-            ResultSet rs = dao.pesquisarPorID(vo);
-            if(rs.next()) {
-                throw new Exception("Erro ao Buscar. ID não existente.");
-            } else {
-                List<UsuarioVO> usuario = dao.listar();
-                for(UsuarioVO vo2: usuario) {
-                	System.out.println(vo2.getIdPessoa());
-                }
-            }
-        }
-        catch(SQLException e) {
-            throw new Exception(e.getMessage());
-        }
+			while(rs.next()) {
+				usu.setLogin(rs.getString("loginusuario"));
+				usu.setSenha(rs.getString("senhausuario"));
+				usu.setNome(rs.getString("nomeusuario"));
+				usu.setEndereco(rs.getString("enderecousuario"));
+				usu.setTelefone(rs.getString("telefoneusuario"));
+				usuarios.add(usu);
+			}
+			if(usuarios.isEmpty()) {
+				throw new Exception("Erro ao Listar. ID não existente.");
+			} else {
+				return usuarios;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
-
 	
 	@Override
-	public void buscarPorNome(UsuarioVO vo) throws Exception {
+	public List<UsuarioVO> buscarPorNome(UsuarioVO vo) throws Exception {
+		List<UsuarioVO> usuarios = new ArrayList<UsuarioVO>();
+		ResultSet rs = dao.pesquisarPorNome(vo);
 		try {
-            ResultSet rs = dao.pesquisarPorNome(vo);
-            if(rs.next()) {
-                throw new Exception("Erro ao Buscar. Nome não existente.");
-            } else {
-                List<UsuarioVO> usuario = dao.listar();
-                for(UsuarioVO vo2: usuario) {
-                	System.out.println(vo2.getNome());
-                }
-            }
-        }
-        catch(SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-		
+			while(rs.next()) {
+				usu.setLogin(rs.getString("loginusuario"));
+				usu.setSenha(rs.getString("senhausuario"));
+				usu.setNome(rs.getString("nomeusuario"));
+				usu.setEndereco(rs.getString("enderecousuario"));
+				usu.setTelefone(rs.getString("telefoneusuario"));
+				usuarios.add(usu);
+			}
+			if(usuarios.isEmpty()) {
+				throw new Exception("Erro ao Listar. Nome não existente.");
+			} else {
+				return usuarios;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 	
-	public void buscarPorEndereco(UsuarioVO vo) throws Exception {
+	public List<UsuarioVO> buscarPorEndereco(UsuarioVO vo) throws Exception {
+		List<UsuarioVO> usuarios = new ArrayList<UsuarioVO>();
+		ResultSet rs = dao.pesquisarPorEndereco(vo);
 		try {
-            ResultSet rs = dao.pesquisarPorEndereco(vo);
-            if(rs.next()) {
-                throw new Exception("Erro ao Buscar. Nome não existente.");
-            } else {
-                List<UsuarioVO> usuario = dao.listar();
-                for(UsuarioVO vo2: usuario) {
-                	System.out.println(vo2.getEndereco());
-                }
-            }
-        }
-        catch(SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-		
+			while(rs.next()) {
+				usu.setLogin(rs.getString("loginusuario"));
+				usu.setSenha(rs.getString("senhausuario"));
+				usu.setNome(rs.getString("nomeusuario"));
+				usu.setEndereco(rs.getString("enderecousuario"));
+				usu.setTelefone(rs.getString("telefoneusuario"));
+				usuarios.add(usu);
+			}
+			if(usuarios.isEmpty()) {
+				throw new Exception("Erro ao Listar. Endereco não existente.");
+			} else {
+				return usuarios;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 	
-	public void buscarPorTelefone(UsuarioVO vo) throws Exception {
+	public List<UsuarioVO> buscarPorTelefone(UsuarioVO vo) throws Exception {
+		List<UsuarioVO> usuarios = new ArrayList<UsuarioVO>();
+		ResultSet rs = dao.pesquisarPorTelefone(vo);
 		try {
-            ResultSet rs = dao.pesquisarPorTelefone(vo);
-            if(rs.next()) {
-                throw new Exception("Erro ao Buscar. Nome não existente.");
-            } else {
-                List<UsuarioVO> usuario = dao.listar();
-                for(UsuarioVO vo2: usuario) {
-                	System.out.println(vo2.getTelefone());
-                }
-            }
-        }
-        catch(SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-		
+			while(rs.next()) {
+				usu.setLogin(rs.getString("loginusuario"));
+				usu.setSenha(rs.getString("senhausuario"));
+				usu.setNome(rs.getString("nomeusuario"));
+				usu.setEndereco(rs.getString("enderecousuario"));
+				usu.setTelefone(rs.getString("telefoneusuario"));
+				usuarios.add(usu);
+			}
+			if(usuarios.isEmpty()) {
+				throw new Exception("Erro ao Listar. Telefone não existente.");
+			} else {
+				return usuarios;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
-
-
 
 }

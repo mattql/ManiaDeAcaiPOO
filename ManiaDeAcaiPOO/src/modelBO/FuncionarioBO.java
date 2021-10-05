@@ -2,6 +2,7 @@ package modelBO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import modelDAO.FuncionarioDAO;
@@ -10,6 +11,7 @@ import modelVO.FuncionarioVO;
 
 public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
     FuncionarioDAO dao = new FuncionarioDAO();
+    FuncionarioVO fun = new FuncionarioVO();
 
 	@Override
 	public void cadastrar(FuncionarioVO vo) throws Exception {
@@ -78,7 +80,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
         }
 	}
 	
-public void alterarSalario(FuncionarioVO vo) throws Exception {
+	public void alterarSalario(FuncionarioVO vo) throws Exception {
 		
 		// Alterando o Salario:
 		
@@ -109,119 +111,145 @@ public void alterarSalario(FuncionarioVO vo) throws Exception {
             throw new Exception(e.getMessage());
         }
 	}
-
+	
 	@Override
-	public void buscar(List<FuncionarioVO> vo) throws Exception {
-		FuncionarioVO fun = new FuncionarioVO();
-        ResultSet rs = dao.pesquisarPorID(fun);
-        try {
-        if(rs.next()) {
-            throw new Exception("Erro ao Buscar. ID não existente.");
-        } else {
-           vo = dao.listar();
-           for(FuncionarioVO vo2: vo) {
-        	   System.out.println("{ " + vo2.getNome() + ", " + vo2.getEndereco() + ", " + vo2.getTelefone() + ","
-        			   + vo2.getSalario() + "}");
-           		}
-        	}
-        }
-        catch(SQLException e) {
-        	throw new Exception(e.getMessage());
-    	}
+	public List<FuncionarioVO> buscar() throws Exception {
+		FuncionarioVO c = new FuncionarioVO();
+		List<FuncionarioVO> vo = new ArrayList<FuncionarioVO>();
+		ResultSet rs = dao.pesquisarPorID(c);
+		try {
+			if(rs.next()) {
+				throw new Exception("Erro ao Listar. ID não existente.");
+			} else {
+				vo = dao.listar();
+				return vo;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 	
 	@Override
-	public void buscarPorID(FuncionarioVO vo) throws Exception {
+	public List<FuncionarioVO> buscarPorID(FuncionarioVO vo) throws Exception {
+		List<FuncionarioVO> funcionarios = new ArrayList<FuncionarioVO>();
+		ResultSet rs = dao.pesquisarPorID(vo);
 		try {
-            ResultSet rs = dao.pesquisarPorID(vo);
-            if(rs.next()) {
-                throw new Exception("Erro ao Buscar. ID não existente.");
-            } else {
-                List<FuncionarioVO> funcionario = dao.listar();
-                for(FuncionarioVO vo2: funcionario) {
-                	System.out.println(vo2.getIdPessoa());
-                }
-            }
-        }
-        catch(SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-		
+			while(rs.next()) {
+				fun.setIdPessoa(rs.getInt("idfuncionario"));
+				fun.setNome(rs.getString("nomefuncionario"));
+				fun.setEndereco(rs.getString("enderecofuncionario"));
+				fun.setTelefone(rs.getString("telefonefuncionario"));
+				fun.setSalario(rs.getDouble("slariofuncionario"));
+				funcionarios.add(fun);
+			}
+			if(funcionarios.isEmpty()) {
+				throw new Exception("Erro ao Listar. ID não existente.");
+			} else {
+				return funcionarios;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 
 	@Override
-	public void buscarPorNome(FuncionarioVO vo) throws Exception {
+	public List<FuncionarioVO> buscarPorNome(FuncionarioVO vo) throws Exception {
+		List<FuncionarioVO> funcionarios = new ArrayList<FuncionarioVO>();
+		ResultSet rs = dao.pesquisarPorNome(vo);
 		try {
-            ResultSet rs = dao.pesquisarPorNome(vo);
-            if(rs.next()) {
-                throw new Exception("Erro ao Buscar. Nome não existente.");
-            } else {
-                List<FuncionarioVO> funcionario = dao.listar();
-                for(FuncionarioVO vo2: funcionario) {
-                	System.out.println(vo2.getNome());
-                }
-            }
-        }
-        catch(SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-		
+			while(rs.next()) {
+				fun.setIdPessoa(rs.getInt("idfuncionario"));
+				fun.setNome(rs.getString("nomefuncionario"));
+				fun.setEndereco(rs.getString("enderecofuncionario"));
+				fun.setTelefone(rs.getString("telefonefuncionario"));
+				fun.setSalario(rs.getDouble("slariofuncionario"));
+				funcionarios.add(fun);
+			}
+			if(funcionarios.isEmpty()) {
+				throw new Exception("Erro ao Listar. Nome não existente.");
+			} else {
+				return funcionarios;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 	
-	public void buscarPorEndereco(FuncionarioVO vo) throws Exception {
+	public List<FuncionarioVO> buscarPorEndereco(FuncionarioVO vo) throws Exception {
+		List<FuncionarioVO> funcionarios = new ArrayList<FuncionarioVO>();
+		ResultSet rs = dao.pesquisarPorEndereco(vo);
 		try {
-            ResultSet rs = dao.pesquisarPorEndereco(vo);
-            if(rs.next()) {
-                throw new Exception("Erro ao Buscar. Endereco não existente.");
-            } else {
-                List<FuncionarioVO> funcionario = dao.listar();
-                for(FuncionarioVO vo2: funcionario) {
-                	System.out.println(vo2.getEndereco());
-                }
-            }
-        }
-        catch(SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-		
+			while(rs.next()) {
+				fun.setIdPessoa(rs.getInt("idfuncionario"));
+				fun.setNome(rs.getString("nomefuncionario"));
+				fun.setEndereco(rs.getString("enderecofuncionario"));
+				fun.setTelefone(rs.getString("telefonefuncionario"));
+				fun.setSalario(rs.getDouble("slariofuncionario"));
+				funcionarios.add(fun);
+			}
+			if(funcionarios.isEmpty()) {
+				throw new Exception("Erro ao Listar. Endereco não existente.");
+			} else {
+				return funcionarios;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 	
-	public void buscarPorTelefone(FuncionarioVO vo) throws Exception {
+	public List<FuncionarioVO> buscarPorTelefone(FuncionarioVO vo) throws Exception {
+		List<FuncionarioVO> funcionarios = new ArrayList<FuncionarioVO>();
+		ResultSet rs = dao.pesquisarPorTelefone(vo);
 		try {
-            ResultSet rs = dao.pesquisarPorTelefone(vo);
-            if(rs.next()) {
-                throw new Exception("Erro ao Buscar. Telefone não existente.");
-            } else {
-                List<FuncionarioVO> funcionario = dao.listar();
-                for(FuncionarioVO vo2: funcionario) {
-                	System.out.println(vo2.getTelefone());
-                }
-            }
-        }
-        catch(SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-		
+			while(rs.next()) {
+				fun.setIdPessoa(rs.getInt("idfuncionario"));
+				fun.setNome(rs.getString("nomefuncionario"));
+				fun.setEndereco(rs.getString("enderecofuncionario"));
+				fun.setTelefone(rs.getString("telefonefuncionario"));
+				fun.setSalario(rs.getDouble("slariofuncionario"));
+				funcionarios.add(fun);
+			}
+			if(funcionarios.isEmpty()) {
+				throw new Exception("Erro ao Listar. Telefone não existente.");
+			} else {
+				return funcionarios;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 	
-	public void buscarPorSalario(FuncionarioVO vo) throws Exception {
+	public List<FuncionarioVO> buscarPorSalario(FuncionarioVO vo) throws Exception {
+		List<FuncionarioVO> funcionarios = new ArrayList<FuncionarioVO>();
+		ResultSet rs = dao.pesquisarPorSalario(vo);
 		try {
-            ResultSet rs = dao.pesquisarPorSalario(vo);
-            if(rs.next()) {
-                throw new Exception("Erro ao Buscar. Salario não existente.");
-            } else {
-                List<FuncionarioVO> funcionario = dao.listar();
-                for(FuncionarioVO vo2: funcionario) {
-                	System.out.println(vo2.getSalario());
-                }
-            }
-        }
-        catch(SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-		
+			while(rs.next()) {
+				fun.setIdPessoa(rs.getInt("idfuncionario"));
+				fun.setNome(rs.getString("nomefuncionario"));
+				fun.setEndereco(rs.getString("enderecofuncionario"));
+				fun.setTelefone(rs.getString("telefonefuncionario"));
+				fun.setSalario(rs.getDouble("slariofuncionario"));
+				funcionarios.add(fun);
+			}
+			if(funcionarios.isEmpty()) {
+				throw new Exception("Erro ao Listar. Salario não existente.");
+			} else {
+				return funcionarios;
+			}
+		}
+		catch(SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 
+	
+
+	
 
 	
 }

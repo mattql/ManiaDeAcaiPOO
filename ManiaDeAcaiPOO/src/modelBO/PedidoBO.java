@@ -8,7 +8,6 @@ import java.util.List;
 
 import modelDAO.PedidoDAO;
 import modelDAO.PedidoProdutoDAO;
-import modelVO.ClienteVO;
 import modelVO.PedidoProdutoVO;
 import modelVO.PedidoVO;
 
