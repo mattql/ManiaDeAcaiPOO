@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelVO.ClienteVO;
-import modelVO.PedidoVO;
 
 public class ClienteDAO extends BaseDAO<ClienteVO>{
 	@Override
@@ -117,7 +116,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO>{
 				c.setNome(rs.getString("nomeCliente"));
 				c.setEndereco(rs.getString("enderecoCliente"));
 				c.setTelefone(rs.getString("telefoneCliente"));
-				c.setEmail(rs.getString("telefoneCliente"));
+				c.setEmail(rs.getString("emailCliente"));
 				clientes.add(c);
 			}
 		} catch (SQLException e) {

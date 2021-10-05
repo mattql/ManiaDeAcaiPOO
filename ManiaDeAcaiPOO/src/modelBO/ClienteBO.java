@@ -2,15 +2,19 @@ package modelBO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import modelDAO.ClienteDAO;
 import modelVO.ClienteVO;
 
-public class ClienteBO implements BaseInterBO<ClienteVO>{
+public class ClienteBO implements BaseInterBO<ClienteVO> {
 	ClienteDAO dao = new ClienteDAO();
+	ClienteVO c = new ClienteVO();
+	List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+	
 	@Override
-	public void cadastrar(ClienteVO vo) throws Exception{
+	public void cadastrar(ClienteVO vo) throws Exception {
 		try {
 			ResultSet rs = dao.pesquisarPorID(vo);
 			if(rs.next()) {
@@ -101,18 +105,16 @@ public class ClienteBO implements BaseInterBO<ClienteVO>{
 	}
 	
 	@Override
-	public void buscar(List<ClienteVO> vo) throws Exception {
+	public List<ClienteVO> buscar() throws Exception {
 		ClienteVO c = new ClienteVO();
+		List<ClienteVO> vo = new ArrayList<ClienteVO>();
 		ResultSet rs = dao.pesquisarPorID(c);
 		try {
 			if(rs.next()) {
 				throw new Exception("Erro ao Listar. ID não existente.");
 			} else {
 				vo = dao.listar();
-				for(ClienteVO vo2: vo) {
-					System.out.println("{ " + vo2.getIdPessoa() + ", " + vo2.getNome() + ", " + vo2.getEndereco()
-						+ ", " + vo2.getTelefone() + ", " + vo2.getEmail() + " }");
-				}
+				return vo;
 			}
 		}
 		catch(SQLException e) {
@@ -121,35 +123,45 @@ public class ClienteBO implements BaseInterBO<ClienteVO>{
 	}
 
 	@Override
-	public void buscarPorID(ClienteVO vo) throws Exception {
+	public List<ClienteVO> buscarPorID(ClienteVO vo) throws Exception {
 		ResultSet rs = dao.pesquisarPorID(vo);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
+				c.setIdPessoa(rs.getInt("IdCliente"));
+				c.setNome(rs.getString("nomecliente"));
+				c.setEndereco(rs.getString("enderecocliente"));
+				c.setTelefone(rs.getString("telefonecliente"));
+				c.setEmail(rs.getString("emailcliente"));
+				clientes.add(c);
+			}
+			if(clientes.isEmpty()) {
 				throw new Exception("Erro ao Listar. ID não existente.");
 			} else {
-				List<ClienteVO> clientes = dao.listar();
-				for(ClienteVO vo2: clientes) {
-					System.out.println(vo2.getIdPessoa());
-				}
+				return clientes;
 			}
 		}
 		catch(SQLException e) {
 			throw new Exception(e.getMessage());
 		}
-		
 	}
+	
 
 	@Override
-	public void buscarPorNome(ClienteVO vo) throws Exception {
+	public List<ClienteVO> buscarPorNome(ClienteVO vo) throws Exception {
 		ResultSet rs = dao.pesquisarPorNome(vo);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
+				c.setIdPessoa(rs.getInt("IdCliente"));
+				c.setNome(rs.getString("nomecliente"));
+				c.setEndereco(rs.getString("enderecocliente"));
+				c.setTelefone(rs.getString("telefonecliente"));
+				c.setEmail(rs.getString("emailcliente"));
+				clientes.add(c);
+			}
+			if(clientes.isEmpty()) {
 				throw new Exception("Erro ao Listar. Nome não existente.");
 			} else {
-				List<ClienteVO> clientes = dao.listar();
-				for(ClienteVO vo2: clientes) {
-					System.out.println(vo2.getNome());
-				}
+				return clientes;
 			}
 		}
 		catch(SQLException e) {
@@ -157,16 +169,22 @@ public class ClienteBO implements BaseInterBO<ClienteVO>{
 		}
 	}
 	
-	public void buscarPorEndereco(ClienteVO vo) throws Exception {
+	
+	public List<ClienteVO> buscarPorEndereco(ClienteVO vo) throws Exception {
 		ResultSet rs = dao.pesquisarPorEndereco(vo);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
+				c.setIdPessoa(rs.getInt("IdCliente"));
+				c.setNome(rs.getString("nomecliente"));
+				c.setEndereco(rs.getString("enderecocliente"));
+				c.setTelefone(rs.getString("telefonecliente"));
+				c.setEmail(rs.getString("emailcliente"));
+				clientes.add(c);
+			}
+			if(clientes.isEmpty()) {
 				throw new Exception("Erro ao Listar. Endereço não existente.");
 			} else {
-				List<ClienteVO> clientes = dao.listar();
-				for(ClienteVO vo2: clientes) {
-					System.out.println(vo2.getEndereco());
-				}
+				return clientes;
 			}
 		}
 		catch(SQLException e) {
@@ -174,33 +192,43 @@ public class ClienteBO implements BaseInterBO<ClienteVO>{
 		}
 	}
 	
-	public void buscarPorTelefone(ClienteVO vo) throws Exception {
+	public List<ClienteVO> buscarPorTelefone(ClienteVO vo) throws Exception {
 		ResultSet rs = dao.pesquisarPorTelefone(vo);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
+				c.setIdPessoa(rs.getInt("IdCliente"));
+				c.setNome(rs.getString("nomecliente"));
+				c.setEndereco(rs.getString("enderecocliente"));
+				c.setTelefone(rs.getString("telefonecliente"));
+				c.setEmail(rs.getString("emailcliente"));
+				clientes.add(c);
+			}
+			if(clientes.isEmpty()) {
 				throw new Exception("Erro ao Listar. Telefone não existente.");
 			} else {
-				List<ClienteVO> clientes = dao.listar();
-				for(ClienteVO vo2: clientes) {
-					System.out.println(vo2.getTelefone());
-				}
+				return clientes;
 			}
 		}
 		catch(SQLException e) {
 			throw new Exception(e.getMessage());
-		}
+		}	
 	}
 	
-	public void buscarPorEmail(ClienteVO vo) throws Exception {
+	public List<ClienteVO> buscarPorEmail(ClienteVO vo) throws Exception {
 		ResultSet rs = dao.pesquisarPorEmail(vo);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
+				c.setIdPessoa(rs.getInt("IdCliente"));
+				c.setNome(rs.getString("nomecliente"));
+				c.setEndereco(rs.getString("enderecocliente"));
+				c.setTelefone(rs.getString("telefonecliente"));
+				c.setEmail(rs.getString("emailcliente"));
+				clientes.add(c);
+			}
+			if(clientes.isEmpty()) {
 				throw new Exception("Erro ao Listar. Email não existente.");
 			} else {
-				List<ClienteVO> clientes = dao.listar();
-				for(ClienteVO vo2: clientes) {
-					System.out.println(vo2.getEmail());
-				}
+				return clientes;
 			}
 		}
 		catch(SQLException e) {

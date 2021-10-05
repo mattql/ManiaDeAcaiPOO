@@ -2,6 +2,7 @@ package modelBO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import modelDAO.ProdutoDAO;
@@ -9,6 +10,8 @@ import modelVO.ProdutoVO;
 
 public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 	ProdutoDAO dao = new ProdutoDAO();
+	ProdutoVO p = new ProdutoVO();
+	List<ProdutoVO> produtos = new ArrayList<ProdutoVO>();
 	@Override
 	public void cadastrar(ProdutoVO vo) throws Exception {
 		try {
@@ -86,18 +89,16 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 	}
 
 	@Override
-	public void buscar(List<ProdutoVO> vo) throws Exception {
+	public List<ProdutoVO> buscar() throws Exception {
 		ProdutoVO p = new ProdutoVO();
+		List<ProdutoVO> vo = new ArrayList<ProdutoVO>();
 		ResultSet rs = dao.pesquisarPorID(p);
 		try {
 			if(rs.next()) {
 				throw new Exception("Erro ao Listar. ID não existente.");
 			} else {
 				vo = dao.listar();
-				for(ProdutoVO vo2: vo) {
-					System.out.println("{ " + vo2.getIdProduto() + ", " + vo2.getnomeProduto() + ", " + vo2.getprecoProduto()
-						+ ", " + vo2.getcategoriaProduto() + " }");
-				}
+				return vo;
 			}
 		}
 		catch(SQLException e) {
@@ -107,16 +108,20 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 	}
 
 	@Override
-	public void buscarPorID(ProdutoVO vo) throws Exception {
+	public List<ProdutoVO> buscarPorID(ProdutoVO vo) throws Exception {
 		ResultSet rs = dao.pesquisarPorID(vo);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
+				p.setIdProduto(rs.getInt("IdProduto"));
+				p.setnomeProduto(rs.getString("nomeproduto"));
+				p.setprecoProduto(rs.getDouble("precoproduto"));
+				p.setcategoriaProduto(rs.getString("categoriaproduto"));
+				produtos.add(p);
+			}
+			if(produtos.isEmpty()) {
 				throw new Exception("Erro ao Listar. ID não existente.");
 			} else {
-				List<ProdutoVO> produtos = dao.listar();
-				for(ProdutoVO vo2: produtos) {
-					System.out.println(vo2.getIdProduto());
-				}
+				return produtos;
 			}
 		}
 		catch(SQLException e) {
@@ -125,16 +130,20 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 	}
 
 	@Override
-	public void buscarPorNome(ProdutoVO vo) throws Exception {
+	public List<ProdutoVO> buscarPorNome(ProdutoVO vo) throws Exception {
 		ResultSet rs = dao.pesquisarPorNome(vo);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
+				p.setIdProduto(rs.getInt("IdProduto"));
+				p.setnomeProduto(rs.getString("nomeproduto"));
+				p.setprecoProduto(rs.getDouble("precoproduto"));
+				p.setcategoriaProduto(rs.getString("categoriaproduto"));
+				produtos.add(p);
+			}
+			if(produtos.isEmpty()) {
 				throw new Exception("Erro ao Listar. Nome não existente.");
 			} else {
-				List<ProdutoVO> produtos = dao.listar();
-				for(ProdutoVO vo2: produtos) {
-					System.out.println(vo2.getnomeProduto());
-				}
+				return produtos;
 			}
 		}
 		catch(SQLException e) {
@@ -142,16 +151,20 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 		}
 	}
 	
-	public void buscarPorCategoria(ProdutoVO vo) throws Exception {
+	public List<ProdutoVO> buscarPorCategoria(ProdutoVO vo) throws Exception {
 		ResultSet rs = dao.pesquisarPorCategoria(vo);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
+				p.setIdProduto(rs.getInt("IdProduto"));
+				p.setnomeProduto(rs.getString("nomeproduto"));
+				p.setprecoProduto(rs.getDouble("precoproduto"));
+				p.setcategoriaProduto(rs.getString("categoriaproduto"));
+				produtos.add(p);
+			}
+			if(produtos.isEmpty()) {
 				throw new Exception("Erro ao Listar. Categoria não existente.");
 			} else {
-				List<ProdutoVO> produtos = dao.listar();
-				for(ProdutoVO vo2: produtos) {
-					System.out.println(vo2.getcategoriaProduto());
-				}
+				return produtos;
 			}
 		}
 		catch(SQLException e) {
@@ -159,16 +172,20 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 		}	
 	}
 	
-	public void buscarPorPreco(ProdutoVO vo) throws Exception {
+	public List<ProdutoVO> buscarPorPreco(ProdutoVO vo) throws Exception {
 		ResultSet rs = dao.pesquisarPorPreco(vo);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
+				p.setIdProduto(rs.getInt("IdProduto"));
+				p.setnomeProduto(rs.getString("nomeproduto"));
+				p.setprecoProduto(rs.getDouble("precoproduto"));
+				p.setcategoriaProduto(rs.getString("categoriaproduto"));
+				produtos.add(p);
+			}
+			if(produtos.isEmpty()) {
 				throw new Exception("Erro ao Listar. Preço não existente.");
 			} else {
-				List<ProdutoVO> produtos = dao.listar();
-				for(ProdutoVO vo2: produtos) {
-					System.out.println(vo2.getprecoProduto());
-				}
+				return produtos;
 			}
 		}
 		catch(SQLException e) {
