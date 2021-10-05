@@ -18,7 +18,7 @@ import modelVO.ProdutoVO;
 public class PedidoDAO extends BaseDAO<PedidoVO>{ 	
 	@Override
 	public void inserir(PedidoVO vo) {
-		String sql = "insert into Pedido (cod_cliente, quantidadeprodutos, formadepagamento, statuspedido, datapedido, precototalpedido) values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into Pedido (cliente, quantidadeprodutos, formadepagamentopedido, statuspedido, datapedido, precototalpedido) values (?, ?, ?, ?, ?, ?)";
         PreparedStatement ptst;
     	try {
     		ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -67,9 +67,9 @@ public class PedidoDAO extends BaseDAO<PedidoVO>{
 				Calendar calendar = Calendar.getInstance();
 				
 				pe.setIdPedido(rs.getInt("idpedido"));
-				pe.getCliente().setIdPessoa(rs.getInt("cod_cliente"));
-				pe.setQuantidadeProdutos(rs.getInt("quantidadedeprodutos"));
-				pe.setFormaDePagamentoPedido(rs.getString("formadepagamneto"));
+				pe.getCliente().setIdPessoa(rs.getInt("cliente"));
+				pe.setQuantidadeProdutos(rs.getInt("quantidadeprodutos"));
+				pe.setFormaDePagamentoPedido(rs.getString("formadepagamentopedido"));
 				pe.setStatusPedido(rs.getString("statuspedido"));
 				calendar.setTime(rs.getDate("datapedido"));;
 				pe.setDataPedido(calendar);
@@ -102,7 +102,7 @@ public class PedidoDAO extends BaseDAO<PedidoVO>{
 	}
 	
 	public void editarQuantidade(PedidoVO vo) {
-		String sql = "update Pedido set quantidadedeprodutos = ? where idpedido = ?";
+		String sql = "update Pedido set quantidadeprodutos = ? where idpedido = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
@@ -115,7 +115,7 @@ public class PedidoDAO extends BaseDAO<PedidoVO>{
 	}
 
 	public void editarForma(PedidoVO vo) {
-		String sql = "update Pedido set formadepagamento = ? where idpedido = ?";
+		String sql = "update Pedido set formadepagamentopedido = ? where idpedido = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
@@ -145,7 +145,7 @@ public class PedidoDAO extends BaseDAO<PedidoVO>{
 	@Override
 	public ResultSet pesquisarPorNome(PedidoVO vo) {
 		//Pesquisar por nome do cliente
-		String sql = "select * from Pedido where cod_cliente = ?";
+		String sql = "select * from Pedido where cliente = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		try {

@@ -10,7 +10,7 @@ import modelVO.PedidoVO;
 
 public class PedidoProdutoDAO extends BaseDAO<PedidoProdutoVO>{
 	public void inserir(PedidoProdutoVO[] pp) {
-		String sql = "insert into pedido_produto (cod_pedidoproduto, cod_pedido, cod_produto) values (?, ?, ?)";
+		String sql = "insert into pedido_produto (idpedidoproduto, cod_pedido, cod_produto) values (?, ?, ?)";
 		PreparedStatement ptst;
 		try {
 			for(int i = 0; i < pp.length; i++) {
@@ -26,7 +26,7 @@ public class PedidoProdutoDAO extends BaseDAO<PedidoProdutoVO>{
 	}
 	
 	public void remover(PedidoProdutoVO[] pp) {
-		String sql = "delete from PedidoProduto where cod_pedidoproduto = ?";
+		String sql = "delete from PedidoProduto where idpedidoproduto = ?";
 		PreparedStatement ptst;
 		try {
 			for(int i = 0; i < pp.length; i++) {
@@ -50,7 +50,7 @@ public class PedidoProdutoDAO extends BaseDAO<PedidoProdutoVO>{
 			rs = ptst.executeQuery(sql);
 			while(rs.next()) {
 				PedidoProdutoVO pp = new PedidoProdutoVO();
-				pp.setCodPedidoProduto(rs.getInt("cod_pedidoproduto"));
+				pp.setCodPedidoProduto(rs.getInt("idpedidoproduto"));
 				pp.getCod_pedido().setIdPedido(rs.getInt("cod_pedido"));
 				pp.getCod_produto().setIdProduto(rs.getInt("cod_produto"));
 				pedidoproduto.add(pp);				

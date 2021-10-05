@@ -2,13 +2,23 @@ package modelBO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import modelDAO.PedidoDAO;
+import modelDAO.PedidoProdutoDAO;
+import modelVO.ClienteVO;
+import modelVO.PedidoProdutoVO;
 import modelVO.PedidoVO;
 
 public class PedidoBO implements BaseInterBO<PedidoVO>{
 	PedidoDAO dao = new PedidoDAO();
+	PedidoVO p = new PedidoVO();
+	List<PedidoVO> pedidos = new ArrayList<PedidoVO>();
+	Calendar calendar = Calendar.getInstance();
+	List<PedidoProdutoVO> pedidoProduto = new ArrayList<PedidoProdutoVO>();
+	
 	@Override
 	public void cadastrar(PedidoVO vo) throws Exception {
 		try {
@@ -87,18 +97,15 @@ public class PedidoBO implements BaseInterBO<PedidoVO>{
 	}
 
 	@Override
-	public void buscar(List<PedidoVO> vo) throws Exception {
-		PedidoVO p = new PedidoVO();
+	public List<PedidoVO> buscar() throws Exception {
+		List<PedidoVO> vo = new ArrayList<PedidoVO>();
 		ResultSet rs = dao.pesquisarPorID(p);
 		try {
 			if(rs.next()) {
 				throw new Exception("Erro ao Listar. ID não existente.");
 			} else {
 				vo = dao.listar();
-				for(PedidoVO vo2: vo) {
-					System.out.println("{ " + vo2.getIdPedido() + ", " + vo2.getCliente() + ", " + vo2.getInfoProduto() + ", " + vo2.getQuantidadeProdutos()
-						+ ", " + vo2.getFormaDePagamentoPedido() + ", " + vo2.getStatusPedido() + ", " + vo2.getDataPedido() + ", " + vo2.getPrecoTotalPedido() + " }");
-				}
+				return vo;
 			}
 		}
 		catch(SQLException e) {
@@ -108,36 +115,59 @@ public class PedidoBO implements BaseInterBO<PedidoVO>{
 	}
 
 	@Override
-	public void buscarPorID(PedidoVO vo) throws Exception {
+	public List<PedidoVO> buscarPorID(PedidoVO vo) throws Exception {
 		ResultSet rs = dao.pesquisarPorID(vo);
 		try {
+			while(rs.next()) {
+				p.setIdPedido(rs.getInt("IdPedido"));
+				p.getCliente().setIdPessoa((rs.getInt("cliente")));
+				p.setQuantidadeProdutos(rs.getInt("quantidadeprodutos"));
+				p.setFormaDePagamentoPedido(rs.getString("formadepagamentopedido"));
+				p.setStatusPedido(rs.getString("statuspedido"));
+				calendar.setTime(rs.getDate("datapedido"));;
+				p.setDataPedido(calendar);
+				p.setPrecoTotalPedido(rs.getDouble("precototalpedido"));
+				pedidos.add(p);
+				
+				PedidoProdutoDAO ppdao = new PedidoProdutoDAO();
+				pedidoProduto = ppdao.listar(p);
+				p.setInfoProduto(pedidoProduto.toArray(new PedidoProdutoVO[pedidoProduto.size()]));
+			}
 			if(rs.next()) {
 				throw new Exception("Erro ao Listar. ID não existente.");
 			} else {
-				List<PedidoVO> pedidos = dao.listar();
-				for(PedidoVO vo2: pedidos) {
-					System.out.println(vo2.getIdPedido());
-				}
+				return pedidos;
 			}
 		}
 		catch(SQLException e) {
 			throw new Exception(e.getMessage());
 		}
-		
 	}
 
 	@Override
-	public void buscarPorNome(PedidoVO vo) throws Exception {
+	public List<PedidoVO> buscarPorNome(PedidoVO vo) throws Exception {
 		//Buscar por Nome do Cliente
 		ResultSet rs = dao.pesquisarPorNome(vo);
 		try {
+			while(rs.next()) {
+				p.setIdPedido(rs.getInt("IdPedido"));
+				p.getCliente().setIdPessoa((rs.getInt("cliente")));
+				p.setQuantidadeProdutos(rs.getInt("quantidadeprodutos"));
+				p.setFormaDePagamentoPedido(rs.getString("formadepagamentopedido"));
+				p.setStatusPedido(rs.getString("statuspedido"));
+				calendar.setTime(rs.getDate("datapedido"));;
+				p.setDataPedido(calendar);
+				p.setPrecoTotalPedido(rs.getDouble("precototalpedido"));
+				pedidos.add(p);
+				
+				PedidoProdutoDAO ppdao = new PedidoProdutoDAO();
+				pedidoProduto = ppdao.listar(p);
+				p.setInfoProduto(pedidoProduto.toArray(new PedidoProdutoVO[pedidoProduto.size()]));
+			}
 			if(rs.next()) {
-				throw new Exception("Erro ao Listar. Nome do cliente não existente.");
+				throw new Exception("Erro ao Listar. Nome não existente.");
 			} else {
-				List<PedidoVO> pedidos = dao.listar();
-				for(PedidoVO vo2: pedidos) {
-					System.out.println(vo2.getCliente().getNome());
-				}
+				return pedidos;
 			}
 		}
 		catch(SQLException e) {
@@ -145,17 +175,29 @@ public class PedidoBO implements BaseInterBO<PedidoVO>{
 		}
 	}
 	
-	public void buscarPorStatus(PedidoVO vo) throws Exception {
+	public List<PedidoVO> buscarPorStatus(PedidoVO vo) throws Exception {
 		//Buscar por Status do Pedido
 		ResultSet rs = dao.pesquisarPorStatus(vo);
 		try {
+			while(rs.next()) {
+				p.setIdPedido(rs.getInt("IdPedido"));
+				p.getCliente().setIdPessoa((rs.getInt("cliente")));
+				p.setQuantidadeProdutos(rs.getInt("quantidadeprodutos"));
+				p.setFormaDePagamentoPedido(rs.getString("formadepagamentopedido"));
+				p.setStatusPedido(rs.getString("statuspedido"));
+				calendar.setTime(rs.getDate("datapedido"));;
+				p.setDataPedido(calendar);
+				p.setPrecoTotalPedido(rs.getDouble("precototalpedido"));
+				pedidos.add(p);
+				
+				PedidoProdutoDAO ppdao = new PedidoProdutoDAO();
+				pedidoProduto = ppdao.listar(p);
+				p.setInfoProduto(pedidoProduto.toArray(new PedidoProdutoVO[pedidoProduto.size()]));
+			}
 			if(rs.next()) {
-				throw new Exception("Erro ao Listar. Status de pedido não existente.");
+				throw new Exception("Erro ao Listar. Status não existente.");
 			} else {
-				List<PedidoVO> pedidos = dao.listar();
-				for(PedidoVO vo2: pedidos) {
-					System.out.println(vo2.getStatusPedido());
-				}
+				return pedidos;
 			}
 		}
 		catch(SQLException e) {
@@ -163,17 +205,29 @@ public class PedidoBO implements BaseInterBO<PedidoVO>{
 		}
 	}
 	
-	public void buscarPorData(PedidoVO vo) throws Exception {
+	public List<PedidoVO> buscarPorData(PedidoVO vo) throws Exception {
 		//Buscar pela data exata do pedido
 		ResultSet rs = dao.pesquisarPorData(vo);
 		try {
+			while(rs.next()) {
+				p.setIdPedido(rs.getInt("IdPedido"));
+				p.getCliente().setIdPessoa((rs.getInt("cliente")));
+				p.setQuantidadeProdutos(rs.getInt("quantidadeprodutos"));
+				p.setFormaDePagamentoPedido(rs.getString("formadepagamentopedido"));
+				p.setStatusPedido(rs.getString("statuspedido"));
+				calendar.setTime(rs.getDate("datapedido"));;
+				p.setDataPedido(calendar);
+				p.setPrecoTotalPedido(rs.getDouble("precototalpedido"));
+				pedidos.add(p);
+				
+				PedidoProdutoDAO ppdao = new PedidoProdutoDAO();
+				pedidoProduto = ppdao.listar(p);
+				p.setInfoProduto(pedidoProduto.toArray(new PedidoProdutoVO[pedidoProduto.size()]));
+			}
 			if(rs.next()) {
 				throw new Exception("Erro ao Listar. Data não existente.");
 			} else {
-				List<PedidoVO> pedidos = dao.listar();
-				for(PedidoVO vo2: pedidos) {
-					System.out.println(vo2.getDataPedido());
-				}
+				return pedidos;
 			}
 		}
 		catch(SQLException e) {
