@@ -6,12 +6,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelDAO.UsuarioDAO;
+import modelVO.AdministradorVO;
+import modelVO.FuncionarioVO;
 import modelVO.UsuarioVO;
 
 public class UsuarioBO implements BaseInterBO<UsuarioVO>{
     UsuarioDAO dao = new UsuarioDAO();
     UsuarioVO usu = new UsuarioVO();
 
+   public void autenticar (UsuarioVO vo) throws Exception{
+    	ResultSet usu = dao.pesquisarPorID(vo);
+    	try {
+    		if(usu.next()) {
+    			if(usu.getString("senhaUsuario").equals(vo.getSenha())) {
+    				FuncionarioVO fun = new FuncionarioVO();
+    				fun.setIdPessoa(usu.getInt("idPessoa"));
+    				
+    				ResultSet funRS = dao.pesquisarPorID(vo);
+    				if(funRS.next()) {
+    					fun.setIdPessoa(vo.getIdPessoa());
+    					fun.setNome(vo.getNome());
+    					fun.setEndereco(vo.getEndereco());
+    					fun.setTelefone(vo.getTelefone());
+    				} else 
+    				dao.inserir(vo);{
+    					
+    	            }
+    				if(usu.getString("senhaUsuario").equals(vo.getSenha())) {
+        				AdministradorVO adm = new AdministradorVO();
+        				adm.setloginADM(usu.getString("loginUsuario"));
+        				
+        				ResultSet admRS = dao.pesquisarPorID(vo);
+        				if(admRS.next()) {
+        					adm.setloginADM(vo.getLogin());
+        					adm.setsenhaADM(vo.getSenha());
+        				} else 
+        				dao.inserir(vo);{
+        					
+        	            }
+    			} else dao.inserir(vo);{
+    				
+    			}
+    		}else dao.inserir(vo);{
+    			
+    		}
+    	}
+    }
+    	catch(SQLException e) {
+    		e.printStackTrace();
+    		dao.inserir(vo);
+        }
+    }
+    
 	@Override
 	public void cadastrar(UsuarioVO vo) throws Exception {
 		try {

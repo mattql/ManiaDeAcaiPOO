@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: FFFEE9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Region layoutX="16.0" layoutY="188.0" prefHeight="504.0" prefWidth="1249.0" style="-fx-background-color: E0C8ED; -fx-background-radius: 8;" />
+      <ImageView fitHeight="524.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Faculdade/POO@/2021.1/Eclipse%20imagens%20da%20interface/Cabeçalho%20Geral.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="340.0" layoutX="480.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Faculdade/POO@/2021.1/Eclipse%20imagens%20da%20interface/Lista%20de%20Pedidos.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="1063.0" layoutY="206.0" prefHeight="28.0" prefWidth="182.0" promptText="pesquisar" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </TextField>
+      <TableView layoutX="20.0" layoutY="260.0" prefHeight="395.0" prefWidth="1112.0" style="-fx-background-color: E0C8ED;">
+         <columns>
+            <TableColumn prefWidth="59.0" text="ID" />
+            <TableColumn prefWidth="189.0" text="Cliente" />
+            <TableColumn prefWidth="84.0" text="Qtd." />
+            <TableColumn prefWidth="177.0" text="Forma de Pagamento" />
+            <TableColumn prefWidth="178.0" text="Info" />
+            <TableColumn prefWidth="133.0" text="Data" />
+            <TableColumn prefWidth="110.0" text="Valor Total" />
+            <TableColumn prefWidth="181.0" text="Status" />
+         </columns>
+      </TableView>
+      <Separator layoutX="1134.0" layoutY="379.0" prefHeight="0.0" prefWidth="130.0" />
+      <Separator layoutX="1134.0" layoutY="305.0" prefHeight="0.0" prefWidth="130.0" />
+      <Button layoutX="1148.0" layoutY="250.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #ffd700; -fx-background-radius: 10;" text="➕ Cadastrar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="1167.0" layoutY="325.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="64.0" style="-fx-background-color: #ffd700; -fx-background-radius: 10;" text="✍ Editar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="1188.0" layoutY="98.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="76.0" style="-fx-background-color: #ffd700; -fx-background-radius: 88;" text="Menu ➜">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
