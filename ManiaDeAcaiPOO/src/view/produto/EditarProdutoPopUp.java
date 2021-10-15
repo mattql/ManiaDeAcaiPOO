@@ -1,10 +1,11 @@
 package view.produto;
 
-import javafx.stage.Parent;
-import javafx.stage.Scene;
+
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 public class EditarProdutoPopUp extends Application{
 	public static void main(String[] args) {
