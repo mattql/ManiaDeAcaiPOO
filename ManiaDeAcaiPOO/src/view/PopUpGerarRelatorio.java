@@ -1,8 +1,8 @@
 package view;
 
-import view.cliente.Parent;
-import view.cliente.Scene;
-import view.cliente.Stage;
+import javafx.stage.Parent;
+import javafx.stage.Scene;
+import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 
