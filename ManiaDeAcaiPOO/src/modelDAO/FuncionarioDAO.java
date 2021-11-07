@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelVO.AdministradorVO;
 import modelVO.FuncionarioVO;
 
 public class FuncionarioDAO extends BaseDAO<FuncionarioVO>{

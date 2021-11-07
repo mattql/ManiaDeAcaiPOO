@@ -7,8 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelVO.ClienteVO;
-import modelVO.FuncionarioVO;
 import modelVO.ProdutoVO;
 
 public class ProdutoDAO extends BaseDAO<ProdutoVO>{

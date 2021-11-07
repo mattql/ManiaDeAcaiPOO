@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelVO.AdministradorVO;
-import modelVO.ClienteVO;
 
 public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 

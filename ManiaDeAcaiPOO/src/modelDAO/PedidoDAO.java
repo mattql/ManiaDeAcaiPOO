@@ -1,7 +1,6 @@
 package modelDAO;
 
 
-import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,11 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.sql.Date;
-import modelVO.ClienteVO;
 import modelVO.PedidoProdutoVO;
 import modelVO.PedidoVO;
-import modelVO.ProdutoVO;
 
 public class PedidoDAO extends BaseDAO<PedidoVO>{ 	
 	@Override
