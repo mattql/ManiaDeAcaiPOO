@@ -33,7 +33,8 @@
       <Button layoutX="1099.0" layoutY="402.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="64.0" style="-fx-background-color: #ca257b; -fx-background-radius: 10;" text="🗑 Excluir">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
+         </cursor>
+      </Button>
       <Button layoutX="1082.0" layoutY="250.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #ffd700; -fx-background-radius: 10;" text="➕ Cadastrar">
          <cursor>
             <Cursor fx:constant="HAND" />
