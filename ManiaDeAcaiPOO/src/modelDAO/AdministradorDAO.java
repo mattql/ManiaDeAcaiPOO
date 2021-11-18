@@ -94,7 +94,17 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 
 	@Override
 	public ResultSet pesquisarPorNome(AdministradorVO vo) {
-		return null;
+		String sql = "select * from Administrador where loginADM = ?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getloginADM());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
 	
 	public List <AdministradorVO> listar() {
@@ -107,7 +117,7 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
 				AdministradorVO c = new AdministradorVO();
-				c.setloginADM(rs.getString("logiADM"));
+				c.setloginADM(rs.getString("loginADM"));
 				c.setsenhaADM(rs.getString("senhaADM"));
 				administrador.add(c);
 			}

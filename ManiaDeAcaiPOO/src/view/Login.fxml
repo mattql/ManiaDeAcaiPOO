@@ -37,10 +37,10 @@
       </ImageView>
       <ImageView fitHeight="88.0" fitWidth="231.0" layoutX="1.0" layoutY="632.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Matheus/Documentos/Eclipse%20Workspace/Teste2/src/view/imagens/Créditos.png" />
+            <Image url="@imagens/Créditos.png" />
          </image>
       </ImageView>
-      <Label layoutX="887.0" layoutY="459.0" text="Login ou senha inválidos!" textFill="RED" visible="false">
+      <Label fx:id="erroAut" layoutX="887.0" layoutY="459.0" text="Login ou senha inválidos!" textFill="RED" visible="false">
          <font>
             <Font size="25.0" />
          </font>

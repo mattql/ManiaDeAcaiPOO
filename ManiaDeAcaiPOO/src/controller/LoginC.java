@@ -10,22 +10,26 @@ import modelVO.AdministradorVO;
 import view.Telas;
 
 public class LoginC {
-	private Telas view;
 	@FXML private TextField login;
 	@FXML private PasswordField senha;
-	@FXML private Label erro;
+	@FXML private Label erroAut;
 	
-	AdministradorBO bo = new AdministradorBO();
-	AdministradorVO vo = new AdministradorVO();
+	AdministradorBO abo = new AdministradorBO();
 
 	@FXML
     void logar(ActionEvent event) throws Exception {
-		Telas.telaMenu();
-		//Telas.telaListaCliente();
-		//Telas.telaListaProdutos();
-		//Telas.telaListaProdutosFunc();
-		//Telas.telaCadastroFuncionario();
-		//Telas.telaListaFuncionario();
-    }
+		AdministradorVO avo = new AdministradorVO();
+		avo.setloginADM(login.getText());
+		avo.setsenhaADM(senha.getText());
 
+		try {
+			AdministradorVO autenticado = abo.autenticar(avo);
+			if (autenticado instanceof AdministradorVO) {
+				Telas.telaMenu();
+			}
+		} catch (Exception e) {
+			erroAut.setText("Login ou senha inválidos!");
+			erroAut.setVisible(true);
+		}
+    }
 }

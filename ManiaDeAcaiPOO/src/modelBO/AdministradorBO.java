@@ -13,6 +13,35 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
     AdministradorDAO dao = new AdministradorDAO();
     AdministradorVO a = new AdministradorVO();
     
+    public AdministradorVO autenticar(AdministradorVO avo) throws Exception {
+    	ResultSet rs = dao.pesquisarPorNome(a);
+		try {
+			if (rs.next()) {
+				System.out.println(rs.getString("loginADM"));
+				if(rs.getString("loginADM").equals(a.getloginADM())) {
+					if(rs.getString("senhaADM").equals(a.getsenhaADM())) {	
+						AdministradorVO adm = new AdministradorVO();
+						adm.setIdadmin(rs.getInt("idadmin"));
+						adm.setIdadmin(a.getIdadmin());
+						adm.setloginADM(a.getloginADM());
+						adm.setsenhaADM(a.getsenhaADM());		
+						System.out.println("Login realizado com sucesso.");
+						
+						return adm;
+					} else {
+						throw new Exception("Erro de autenticação, Administrador inexistente no sistema.");
+					}
+				} else {
+					throw new Exception("Erro de autenticação, Administrador inexistente no sistema.");
+				}
+			} else {
+				throw new Exception("Erro de autenticação, Administrador inexistente no sistema.");
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+    
 	@Override
 	public void cadastrar(AdministradorVO vo) throws Exception {
 		try {
