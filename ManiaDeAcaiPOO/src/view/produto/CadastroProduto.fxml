@@ -81,14 +81,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="1188.0" layoutY="98.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="76.0" style="-fx-background-color: #ffd700; -fx-background-radius: 88;" text="Menu ➜">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="Roboto" size="14.0" />
-         </font>
-      </Button>
       <Button alignment="CENTER" layoutX="958.0" layoutY="613.0" mnemonicParsing="false" onAction="#botaoCancelar" prefHeight="51.0" prefWidth="76.0" style="-fx-background-color: #ca257b; -fx-background-radius: 28;" text="❌">
          <font>
             <Font size="20.0" />

@@ -116,5 +116,10 @@ public class ListaClientesC implements Initializable{
 	@FXML
     void abrirCadastrar(ActionEvent event) throws Exception {
 		Telas.telaCadastroCliente();
-    }	
+    }
+	
+	@FXML
+    void menu(ActionEvent event) throws Exception {
+		Telas.telaMenu();
+    }
 }

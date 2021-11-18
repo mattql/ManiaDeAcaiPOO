@@ -54,7 +54,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="1188.0" layoutY="98.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="76.0" style="-fx-background-color: #ffd700; -fx-background-radius: 88;" text="Menu ➜">
+      <Button layoutX="1188.0" layoutY="98.0" mnemonicParsing="false" onAction="#menu" prefHeight="45.0" prefWidth="76.0" style="-fx-background-color: #ffd700; -fx-background-radius: 88;" text="Menu ➜">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

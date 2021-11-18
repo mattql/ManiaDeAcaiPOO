@@ -92,16 +92,12 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 
 	@Override
 	public List<AdministradorVO> buscarPorID(AdministradorVO vo) throws Exception {
-
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 
 	@Override
 	public List<AdministradorVO> buscarPorNome(AdministradorVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
-   
 }

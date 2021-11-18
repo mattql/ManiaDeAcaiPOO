@@ -19,7 +19,7 @@ public class CadastroProdutoC {
     
     @FXML 
     void botaoCancelar(ActionEvent event) throws Exception {
-    	Telas.telaListaProdutosADM();
+    	Telas.telaListaProdutos();
     }
 
     @FXML

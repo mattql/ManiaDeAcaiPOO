@@ -111,5 +111,10 @@ public class ListaProdutosC implements Initializable{
             cancelarPopupExcluir(event);
         }
     }
+    
+    @FXML
+    void menu(ActionEvent event) throws Exception {
+    	Telas.telaMenu();
+    }
 
 }

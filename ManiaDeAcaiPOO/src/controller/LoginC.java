@@ -20,10 +20,12 @@ public class LoginC {
 
 	@FXML
     void logar(ActionEvent event) throws Exception {
-		Telas.telaListaCliente();
-		//Telas.telaListaProdutosADM();
+		Telas.telaMenu();
+		//Telas.telaListaCliente();
+		//Telas.telaListaProdutos();
 		//Telas.telaListaProdutosFunc();
 		//Telas.telaCadastroFuncionario();
+		//Telas.telaListaFuncionario();
     }
 
 }

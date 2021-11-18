@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
     private static Connection conn = null;
-    private static final String url = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String url = "jdbc:postgresql://localhost:5432/ProjetoPooManiaDeAcai";
     private static final String user = "postgres";
     private static final String senha = "matheusmatheus";
 

@@ -26,14 +26,10 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 			if(affectedRows == 0) {
 				throw new SQLException("A inserção falhou, nenhuma linha foi alterada. ");
 			}
-			ResultSet generatedKey = ptst.getGeneratedKeys();
-			if (generatedKey.next()) {
-				vo.setloginADM(generatedKey.getString(1));
-			}
-			else {
-				throw new SQLException("A inserção falhou, nenhuma login foi retornado.");
-			}
-			
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				vo.setIdadmin(generatedKeys.getInt(1));
+			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -41,11 +37,11 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 
 	@Override
 	public void remover(AdministradorVO vo) {
-		String sql = "delete from Administrador where loginADM = ?";
+		String sql = "delete from Administrador where idadmin = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getloginADM());
+			ptst.setInt(1, vo.getIdadmin());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,13 +50,13 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 
 	@Override
 	public void editar(AdministradorVO vo) {
-		// TODO Auto-generated method stub
-		String sql = "update from Administrador set senhaADM = ? where loginADM = ?";
+		//Editar Senha
+		String sql = "update from Administrador set senhaADM = ? where idadmin = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1, vo.getsenhaADM());
-			ptst.setString(2, vo.getloginADM());
+			ptst.setInt(2, vo.getIdadmin());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,13 +64,13 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 	}
 	
 	public void editarLogin(AdministradorVO vo) {
-		// TODO Auto-generated method stub
-		String sql = "update from Administrador set loginADM = ? where senhaADM = ?";
+		//Editar Login
+		String sql = "update from Administrador set loginADM = ? where idadmin = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1, vo.getloginADM());
-			ptst.setString(2, vo.getsenhaADM());
+			ptst.setInt(2, vo.getIdadmin());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -83,13 +79,12 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 
 	@Override
 	public ResultSet pesquisarPorID(AdministradorVO vo) {
-		// TODO Auto-generated method stub
-		String sql = "select * from Administrador where loginADM = ?";
+		String sql = "select * from Administrador where idadmin = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getloginADM());
+			ptst.setInt(1, vo.getIdadmin());
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -99,12 +94,11 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 
 	@Override
 	public ResultSet pesquisarPorNome(AdministradorVO vo) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	public List <AdministradorVO> listar() {
-		String sql = "select * from Cliente";
+		String sql = "select * from Administrador";
 		ResultSet rs;
 		Statement st;
 		List<AdministradorVO> administrador = new ArrayList<AdministradorVO>();

@@ -13,7 +13,7 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO>{
 
 	@Override
 	public void inserir(FuncionarioVO vo) {
-		String sql = "insert into Funcionario (nomeFuncionario, enderecofuncioanrio, telefoneFuncionario, salariofuncionario) values(?,?,?,?)";
+		String sql = "insert into Funcionario (nomeFuncionario, enderecofuncionario, telefoneFuncionario, salariofuncionario) values(?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -58,7 +58,7 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO>{
 	@Override
 	public void editar(FuncionarioVO vo) {
 		// TODO Auto-generated method stub
-		String sql = "update from Funcionario set nomeFuncionario = ? where idFuncionario = ?";
+		String sql = "update Funcionario set nomeFuncionario = ? where idFuncionario = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
@@ -72,7 +72,7 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO>{
 	
 	public void editarEndereco(FuncionarioVO vo) {
 		// TODO Auto-generated method stub
-		String sql = "update from Funcionario set enderecoFuncionario = ? where idFuncionario = ?";
+		String sql = "update Funcionario set enderecoFuncionario = ? where idFuncionario = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
@@ -86,7 +86,7 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO>{
 	
 	public void editarTelefone(FuncionarioVO vo) {
 		// TODO Auto-generated method stub
-		String sql = "update from Funcionario set telefoneFuncionario = ? where idFuncionario = ?";
+		String sql = "update Funcionario set telefoneFuncionario = ? where idFuncionario = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
@@ -100,7 +100,7 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO>{
 	
 	public void editarSalario(FuncionarioVO vo) {
 		// TODO Auto-generated method stub
-		String sql = "update from Funcionario set salarioFuncionario = ? where idFuncionario = ?";
+		String sql = "update Funcionario set salarioFuncionario = ? where idFuncionario = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
