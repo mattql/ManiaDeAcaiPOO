@@ -13,18 +13,20 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
     AdministradorDAO dao = new AdministradorDAO();
     AdministradorVO a = new AdministradorVO();
     
-    public AdministradorVO autenticar(AdministradorVO avo) throws Exception {
-    	ResultSet rs = dao.pesquisarPorNome(a);
+    public AdministradorVO autenticar(AdministradorVO vo) throws Exception {
+    	ResultSet rs = dao.pesquisarPorNome(vo);
 		try {
 			if (rs.next()) {
 				System.out.println(rs.getString("loginADM"));
-				if(rs.getString("loginADM").equals(a.getloginADM())) {
-					if(rs.getString("senhaADM").equals(a.getsenhaADM())) {	
+				if(rs.getString("loginADM").equals(vo.getLogin())) {
+					if(rs.getString("senhaADM").equals(vo.getSenha())) {	
 						AdministradorVO adm = new AdministradorVO();
 						adm.setIdadmin(rs.getInt("idadmin"));
-						adm.setIdadmin(a.getIdadmin());
-						adm.setloginADM(a.getloginADM());
-						adm.setsenhaADM(a.getsenhaADM());		
+						
+						adm.setIdadmin(vo.getIdadmin());
+						adm.setLogin(vo.getLogin());
+						adm.setSenha(vo.getSenha());		
+						
 						System.out.println("Login realizado com sucesso.");
 						
 						return adm;

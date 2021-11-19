@@ -18,8 +18,8 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ptst.setString(1, vo.getloginADM());
-			ptst.setString(2, vo.getsenhaADM());
+			ptst.setString(1, vo.getLogin());
+			ptst.setString(2, vo.getSenha());
 		  
 			int affectedRows = ptst.executeUpdate();
 				
@@ -55,7 +55,7 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getsenhaADM());
+			ptst.setString(1, vo.getSenha());
 			ptst.setInt(2, vo.getIdadmin());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
@@ -69,7 +69,7 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getloginADM());
+			ptst.setString(1, vo.getLogin());
 			ptst.setInt(2, vo.getIdadmin());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
@@ -99,7 +99,7 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 		ResultSet rs = null;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getloginADM());
+			ptst.setString(1, vo.getLogin());
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,8 +117,8 @@ public class AdministradorDAO extends BaseDAO<AdministradorVO>{
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
 				AdministradorVO c = new AdministradorVO();
-				c.setloginADM(rs.getString("loginADM"));
-				c.setsenhaADM(rs.getString("senhaADM"));
+				c.setLogin(rs.getString("loginADM"));
+				c.setSenha(rs.getString("senhaADM"));
 				administrador.add(c);
 			}
 		} catch (SQLException e) {

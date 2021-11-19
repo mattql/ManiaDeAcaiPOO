@@ -2,8 +2,8 @@ package modelVO;
 
 public class AdministradorVO {
 		private int idadmin;
-		private String loginADM;
-		private String senhaADM;
+		private String login;
+		private String senha;
 		
 		//Codigo Admin
 		public int getIdadmin() {
@@ -16,40 +16,52 @@ public class AdministradorVO {
 		}
 		
 		//Login do ADM
-		public String getloginADM() {
-			return loginADM;
+		public String getLogin() {
+			
+			return login;
+			
 		}
-		
-		public void setloginADM(String loginADM) {
-			if (loginADM == null){
-				System.out.println("Login Inválido");
+		public void setLogin(String login) {
+			if ( login == null) 
+			{
+				System.out.println("Login não pode ser nulo");
 			}
-			else {
-				if(loginADM.equals("")) {
-					 System.out.println("Login não pode ser vazio");
+			else 
+			{
+				if( login.equals("") ) 
+				{
+				 System.out.println("Login não pode ser vazio");	
 				}
-				else {
-					this.loginADM = loginADM;
-				}	
+				else 
+				{
+					this.login = login;	
+				}
 			}
+			
+			
 		}
 		
 		//Senha do ADM
-		public String getsenhaADM() {
-			return senhaADM;
+		public String getSenha() {
+			return senha;
+			
 		}
-		
-		public void setsenhaADM(String senhaADM) {
-			if (senhaADM == null) {
+		public void setSenha(String senha) {
+			if ( senha == null) 
+			{
 				System.out.println("Senha inválida");
 			}
-			else {
-				if(senhaADM.equals("")) {
+			else 
+			{
+				if( senha.equals("") ) 
+				{
 					System.out.println("Senha inválida");
 				}
-				else if (senhaADM.length() >= 4 && senhaADM.length() <= 16) {
-					this.senhaADM = senhaADM;
-				}				
+				else if ( senha.length() >= 4 && senha.length() <= 16 )
+				{
+					this.senha = senha;
+				}
 			}
+			
 		}
 }

@@ -39,8 +39,8 @@ public class ListaProdutosC implements Initializable{
 	public void initialize(URL url, ResourceBundle rb) {
 		id.setCellValueFactory(new PropertyValueFactory<>("idProduto"));
 		nome.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
-		preco.setCellValueFactory(new PropertyValueFactory<>("precoProduto"));
-		categoria.setCellValueFactory(new PropertyValueFactory<>("categoriaProduto"));
+		//preco.setCellValueFactory(new PropertyValueFactory<>("precoProduto"));
+		//categoria.setCellValueFactory(new PropertyValueFactory<>("categoriaProduto"));
 		
 		try {
 			produtos = pbo.buscar();
@@ -50,10 +50,36 @@ public class ListaProdutosC implements Initializable{
 			e.printStackTrace();
 		}
 	}
-
+	
 	@FXML
-	void botaoCadastrar(ActionEvent event) throws Exception {
-		Telas.telaCadastroProduto();
+	void botaoExcluir(ActionEvent event) {
+		paneExcluir.setVisible(true);
+	}
+	
+	@FXML
+    void cancelarPopupExcluir(ActionEvent event) {
+		paneExcluir.setVisible(false);
+    }
+	
+	@FXML
+    void confirmarPopupExcluir(ActionEvent event) throws Exception {
+    	if(tabela.getSelectionModel().getSelectedItem() != null) {
+            produto = tabela.getSelectionModel().getSelectedItem();
+            pbo.remover(produto);
+            produtos = pbo.buscar();
+			oblProdutos = FXCollections.observableArrayList(produtos);
+			tabela.setItems(oblProdutos);
+            cancelarPopupExcluir(event);
+        }
+    }
+	
+	@FXML
+	void botaoEditar(ActionEvent event) {
+		paneEditar.setVisible(true);
+		produto = tabela.getSelectionModel().getSelectedItem();
+		editarNome.setText(produto.getnomeProduto());
+		editarPreco.setText(String.valueOf(produto.getprecoProduto()));
+		editarCategoria.setText(produto.getcategoriaProduto());
 	}
 
 	ProdutoVO produto = new ProdutoVO();
@@ -82,35 +108,9 @@ public class ListaProdutosC implements Initializable{
 	}
 
 	@FXML
-	void botaoEditar(ActionEvent event) {
-		paneEditar.setVisible(true);
-		produto = tabela.getSelectionModel().getSelectedItem();
-		editarNome.setText(produto.getnomeProduto());
-		editarPreco.setText(String.valueOf(produto.getprecoProduto()));
-		editarCategoria.setText(produto.getcategoriaProduto());
+	void botaoCadastrar(ActionEvent event) throws Exception {
+		Telas.telaCadastroProduto();
 	}
-
-	@FXML
-	void botaoExcluir(ActionEvent event) {
-		paneExcluir.setVisible(true);
-	}
-	
-	@FXML
-    void cancelarPopupExcluir(ActionEvent event) {
-		paneExcluir.setVisible(false);
-    }
-
-    @FXML
-    void confirmarPopupExcluir(ActionEvent event) throws Exception {
-    	if(tabela.getSelectionModel().getSelectedItem() != null) {
-            produto = tabela.getSelectionModel().getSelectedItem();
-            pbo.remover(produto);
-            produtos = pbo.buscar();
-			oblProdutos = FXCollections.observableArrayList(produtos);
-			tabela.setItems(oblProdutos);
-            cancelarPopupExcluir(event);
-        }
-    }
     
     @FXML
     void menu(ActionEvent event) throws Exception {

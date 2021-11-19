@@ -15,7 +15,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
     UsuarioVO usu = new UsuarioVO();
 
    public void autenticar (UsuarioVO vo) throws Exception{
-    	ResultSet usu = dao.pesquisarPorID(vo);
+    	/*ResultSet usu = dao.pesquisarPorID(vo);
     	try {
     		if(usu.next()) {
     			if(usu.getString("senhaUsuario").equals(vo.getSenha())) {
@@ -55,7 +55,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
     	catch(SQLException e) {
     		e.printStackTrace();
     		dao.inserir(vo);
-        }
+        }*/
     }
     
 	@Override

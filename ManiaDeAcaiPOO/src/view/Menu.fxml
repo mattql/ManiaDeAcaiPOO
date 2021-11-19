@@ -41,7 +41,7 @@
             <Font name="Roboto" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="162.0" layoutY="608.0" mnemonicParsing="false" onAction="#abrirTelaRealizarPedidos" prefHeight="53.0" prefWidth="177.0" style="-fx-background-color: #ffd700; -fx-background-radius: 10;" text="➕ Realizar Pedido">
+      <Button layoutX="162.0" layoutY="608.0" mnemonicParsing="false" onAction="#abrirTelaRealizarPedidos" prefHeight="53.0" prefWidth="177.0" style="-fx-background-color: #ffd700; -fx-background-radius: 10; -fx-border-color: b89b00; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="➕ Realizar Pedido">
          <font>
             <Font name="Roboto" size="18.0" />
          </font>
@@ -49,7 +49,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="976.0" layoutY="608.0" mnemonicParsing="false" onAction="#logout" prefHeight="53.0" prefWidth="148.0" style="-fx-background-color: #ca257b; -fx-background-radius: 10;" text="➜ Logout">
+      <Button layoutX="976.0" layoutY="608.0" mnemonicParsing="false" onAction="#logout" prefHeight="53.0" prefWidth="148.0" style="-fx-background-color: #ca257b; -fx-background-radius: 10; -fx-border-color: a41361; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="➜ Logout">
          <font>
             <Font name="Roboto" size="18.0" />
          </font>

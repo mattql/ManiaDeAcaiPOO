@@ -30,12 +30,14 @@ public class ListaClientesC implements Initializable{
     @FXML private TextField editarEndereco;
     @FXML private TextField editarNome;
     @FXML private TextField editarTelefone;
+    @FXML private TextField campoPesquisar;
 
 
 	ClienteBO cbo = new ClienteBO();
 	
 	private List<ClienteVO> clientes;
 	private ObservableList<ClienteVO> oblClientes;
+	private ObservableList<ClienteVO> oblPesquisarClientes;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -116,6 +118,12 @@ public class ListaClientesC implements Initializable{
 	@FXML
     void abrirCadastrar(ActionEvent event) throws Exception {
 		Telas.telaCadastroCliente();
+    }
+	
+	@FXML
+    void botaoPesquisar(ActionEvent event) throws Exception {
+		
+		
     }
 	
 	@FXML
