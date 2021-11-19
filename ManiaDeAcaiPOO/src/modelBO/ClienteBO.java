@@ -223,6 +223,7 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 				c.setEndereco(rs.getString("enderecocliente"));
 				c.setTelefone(rs.getString("telefonecliente"));
 				c.setEmail(rs.getString("emailcliente"));
+				System.out.println(c.getEmail());
 				clientes.add(c);
 			}
 			if(clientes.isEmpty()) {

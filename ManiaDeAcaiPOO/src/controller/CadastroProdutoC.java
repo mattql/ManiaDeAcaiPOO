@@ -34,9 +34,9 @@ public class CadastroProdutoC {
 
     @FXML
     void confirmarPopup(ActionEvent event) throws Exception {
-    	pvo.setnomeProduto(nome.getText());
-    	pvo.setprecoProduto(Double.parseDouble(preco.getText()));
-    	pvo.setcategoriaProduto(categoria.getText());
+    	pvo.setNomeProduto(nome.getText());
+    	pvo.setPrecoProduto(Double.parseDouble(preco.getText()));
+    	pvo.setCategoriaProduto(categoria.getText());
     	p.cadastrar(pvo);
     	botaoCancelar(event);
     }

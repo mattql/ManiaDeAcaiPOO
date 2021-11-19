@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: FFFEE9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaProdutosC">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: FFFEE9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaProdutosController">
    <children>
       <Region layoutX="73.0" layoutY="188.0" prefHeight="504.0" prefWidth="1131.0" style="-fx-background-color: E0C8ED; -fx-background-radius: 8;" />
       <ImageView fitHeight="524.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
@@ -31,7 +31,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="1099.0" layoutY="402.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="64.0" style="-fx-background-color: #ca257b; -fx-background-radius: 10;" text="🗑 Excluir">
+      <Button layoutX="1099.0" layoutY="402.0" mnemonicParsing="false" onAction="#excluir" prefHeight="35.0" prefWidth="64.0" style="-fx-background-color: #ca257b; -fx-background-radius: 10;" text="🗑 Excluir">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -65,7 +65,7 @@
             <Font name="Roboto" size="14.0" />
          </font>
       </Button>
-      <Pane layoutX="409.0" layoutY="206.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="460.0" style="-fx-background-color: #964BF6;" visible="false">
+      <Pane fx:id="paneEditar" layoutX="409.0" layoutY="206.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="460.0" style="-fx-background-color: #964BF6;" visible="false">
          <children>
             <TextField fx:id="editarNome" layoutX="102.0" layoutY="80.0" prefHeight="25.0" prefWidth="347.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
                <font>
@@ -120,7 +120,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane layoutX="409.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="460.0" style="-fx-background-color: #964BF6;" visible="false">
+      <Pane fx:id="paneExcluir" layoutX="409.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="460.0" style="-fx-background-color: #964BF6;" visible="false">
          <children>
             <Label layoutX="88.0" layoutY="33.0" text="Tem certeza que deseja excluir?" textFill="#fcc80a">
                <font>

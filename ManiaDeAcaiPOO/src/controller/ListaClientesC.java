@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,16 +32,22 @@ public class ListaClientesC implements Initializable{
     @FXML private TextField editarNome;
     @FXML private TextField editarTelefone;
     @FXML private TextField campoPesquisar;
+    @FXML private ComboBox<String> selecionarTipoPesquisa;
+    
 
 
 	ClienteBO cbo = new ClienteBO();
 	
 	private List<ClienteVO> clientes;
 	private ObservableList<ClienteVO> oblClientes;
-	private ObservableList<ClienteVO> oblPesquisarClientes;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		listar();
+		preencherCombobox();
+	}
+	
+	public void listar() {
 		id.setCellValueFactory(new PropertyValueFactory<>("idPessoa"));
 		nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		endereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
@@ -121,10 +128,75 @@ public class ListaClientesC implements Initializable{
     }
 	
 	@FXML
-    void botaoPesquisar(ActionEvent event) throws Exception {
+    void botaoPesquisar(ActionEvent event) {
+		String selectComboBox = selecionarTipoPesquisa.getSelectionModel().getSelectedItem();
+		if(selectComboBox == "Nome") {
+			ClienteVO nomeCliente = new ClienteVO();
+			nomeCliente.setNome(campoPesquisar.getText());
+			ObservableList<ClienteVO> listarNomeCliente;
+			id.setCellValueFactory(new PropertyValueFactory<>("idPessoa"));
+			nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+			endereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+			telefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+			email.setCellValueFactory(new PropertyValueFactory<>("email"));
+			
+			try {
+				clientes = cbo.buscarPorNome(nomeCliente);
+				listarNomeCliente = FXCollections.observableArrayList(clientes);
+				tabela.setItems(listarNomeCliente);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
+		else if(selectComboBox == "Telefone") {
+			ClienteVO telCliente = new ClienteVO();
+			telCliente.setTelefone(campoPesquisar.getText());
+			
+			id.setCellValueFactory(new PropertyValueFactory<>("idPessoa"));
+			nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+			endereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+			telefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+			email.setCellValueFactory(new PropertyValueFactory<>("email"));
+			
+			try {
+				clientes = cbo.buscarPorTelefone(telCliente);
+				oblClientes = FXCollections.observableArrayList(clientes);
+				tabela.setItems(oblClientes);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
+		else if(selectComboBox == "Email") {
+			ClienteVO emailCliente = new ClienteVO();
+			emailCliente.setEmail(campoPesquisar.getText());
+			ObservableList<ClienteVO> listarEmailCliente;
+			id.setCellValueFactory(new PropertyValueFactory<>("idPessoa"));
+			nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+			endereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+			telefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+			email.setCellValueFactory(new PropertyValueFactory<>("email"));
+			
+			try {
+				clientes = cbo.buscarPorEmail(emailCliente);
+				listarEmailCliente = FXCollections.observableArrayList(clientes);
+				tabela.setItems(listarEmailCliente);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if (selectComboBox == "") {
+			listar();
+		}
     }
+	
+	public void preencherCombobox() {
+		ObservableList<String> pesquisa = FXCollections.observableArrayList("Nome", "Telefone", "Email", "");
+		selecionarTipoPesquisa.setItems(pesquisa);
+		
+	}
 	
 	@FXML
     void menu(ActionEvent event) throws Exception {

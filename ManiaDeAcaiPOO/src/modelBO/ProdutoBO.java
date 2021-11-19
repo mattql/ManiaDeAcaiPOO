@@ -113,9 +113,9 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 		try {
 			while(rs.next()) {
 				p.setIdProduto(rs.getInt("IdProduto"));
-				p.setnomeProduto(rs.getString("nomeproduto"));
-				p.setprecoProduto(rs.getDouble("precoproduto"));
-				p.setcategoriaProduto(rs.getString("categoriaproduto"));
+				p.setNomeProduto(rs.getString("nomeproduto"));
+				p.setPrecoProduto(rs.getDouble("precoproduto"));
+				p.setCategoriaProduto(rs.getString("categoriaproduto"));
 				produtos.add(p);
 			}
 			if(produtos.isEmpty()) {
@@ -135,9 +135,9 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 		try {
 			while(rs.next()) {
 				p.setIdProduto(rs.getInt("IdProduto"));
-				p.setnomeProduto(rs.getString("nomeproduto"));
-				p.setprecoProduto(rs.getDouble("precoproduto"));
-				p.setcategoriaProduto(rs.getString("categoriaproduto"));
+				p.setNomeProduto(rs.getString("nomeproduto"));
+				p.setPrecoProduto(rs.getDouble("precoproduto"));
+				p.setCategoriaProduto(rs.getString("categoriaproduto"));
 				produtos.add(p);
 			}
 			if(produtos.isEmpty()) {
@@ -156,9 +156,9 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 		try {
 			while(rs.next()) {
 				p.setIdProduto(rs.getInt("IdProduto"));
-				p.setnomeProduto(rs.getString("nomeproduto"));
-				p.setprecoProduto(rs.getDouble("precoproduto"));
-				p.setcategoriaProduto(rs.getString("categoriaproduto"));
+				p.setNomeProduto(rs.getString("nomeproduto"));
+				p.setPrecoProduto(rs.getDouble("precoproduto"));
+				p.setCategoriaProduto(rs.getString("categoriaproduto"));
 				produtos.add(p);
 			}
 			if(produtos.isEmpty()) {
@@ -177,9 +177,9 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 		try {
 			while(rs.next()) {
 				p.setIdProduto(rs.getInt("IdProduto"));
-				p.setnomeProduto(rs.getString("nomeproduto"));
-				p.setprecoProduto(rs.getDouble("precoproduto"));
-				p.setcategoriaProduto(rs.getString("categoriaproduto"));
+				p.setNomeProduto(rs.getString("nomeproduto"));
+				p.setPrecoProduto(rs.getDouble("precoproduto"));
+				p.setCategoriaProduto(rs.getString("categoriaproduto"));
 				produtos.add(p);
 			}
 			if(produtos.isEmpty()) {

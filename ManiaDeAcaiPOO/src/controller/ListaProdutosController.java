@@ -3,6 +3,7 @@ package controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,31 +18,31 @@ import modelBO.ProdutoBO;
 import modelVO.ProdutoVO;
 import view.Telas;
 
-public class ListaProdutosC implements Initializable{
-	@FXML private TableView<ProdutoVO> tabela;
-	@FXML private TableColumn<ProdutoVO, Integer> id;
-	@FXML private TableColumn<ProdutoVO, String> nome;
-	@FXML private TableColumn<ProdutoVO, Double> preco;
-	@FXML private TableColumn<ProdutoVO, String> categoria;
-	@FXML private Pane paneEditar;
-	@FXML private TextField editarNome;
-	@FXML private TextField editarPreco;
-	@FXML private TextField editarCategoria;
-	@FXML private Pane paneExcluir;
-	
-	
-	ProdutoBO pbo = new ProdutoBO();
+public class ListaProdutosController implements Initializable{
+    
+    @FXML private TableView<ProdutoVO> tabela;
+    @FXML private TableColumn<ProdutoVO, Integer> id;
+    @FXML private TableColumn<ProdutoVO, String> nome;
+    @FXML private TableColumn<ProdutoVO, Double> preco;
+    @FXML private TableColumn<ProdutoVO, String> categoria;
+    @FXML private TextField editarNome;
+    @FXML private TextField editarPreco;
+    @FXML private TextField editarCategoria;
+    @FXML private Pane paneExcluir;
+    @FXML private Pane paneEditar;
+    
+    ProdutoBO pbo = new ProdutoBO();
 	
 	private List<ProdutoVO> produtos;
 	private ObservableList<ProdutoVO> oblProdutos;
-	
+    
 	@Override
-	public void initialize(URL url, ResourceBundle rb) {
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		id.setCellValueFactory(new PropertyValueFactory<>("idProduto"));
 		nome.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
-		//preco.setCellValueFactory(new PropertyValueFactory<>("precoProduto"));
-		//categoria.setCellValueFactory(new PropertyValueFactory<>("categoriaProduto"));
-		
+		preco.setCellValueFactory(new PropertyValueFactory<>("precoProduto"));
+		categoria.setCellValueFactory(new PropertyValueFactory<>("categoriaProduto"));
+
 		try {
 			produtos = pbo.buscar();
 			oblProdutos = FXCollections.observableArrayList(produtos);
@@ -52,16 +53,18 @@ public class ListaProdutosC implements Initializable{
 	}
 	
 	@FXML
-	void botaoExcluir(ActionEvent event) {
+    void excluir(ActionEvent event) {
 		paneExcluir.setVisible(true);
-	}
+    }
 	
 	@FXML
     void cancelarPopupExcluir(ActionEvent event) {
 		paneExcluir.setVisible(false);
     }
 	
-	@FXML
+	ProdutoVO produto = new ProdutoVO();
+	ProdutoVO novoProduto = new ProdutoVO();
+    @FXML
     void confirmarPopupExcluir(ActionEvent event) throws Exception {
     	if(tabela.getSelectionModel().getSelectedItem() != null) {
             produto = tabela.getSelectionModel().getSelectedItem();
@@ -72,26 +75,24 @@ public class ListaProdutosC implements Initializable{
             cancelarPopupExcluir(event);
         }
     }
-	
-	@FXML
-	void botaoEditar(ActionEvent event) {
-		paneEditar.setVisible(true);
+    
+    @FXML
+    void botaoEditar(ActionEvent event) {
+    	paneEditar.setVisible(true);
 		produto = tabela.getSelectionModel().getSelectedItem();
-		editarNome.setText(produto.getnomeProduto());
-		editarPreco.setText(String.valueOf(produto.getprecoProduto()));
-		editarCategoria.setText(produto.getcategoriaProduto());
-	}
-
-	ProdutoVO produto = new ProdutoVO();
-	ProdutoVO novoProduto = new ProdutoVO();
-	@FXML
-	void confirmarEditar(ActionEvent event) throws Exception {
-		novoProduto = new ProdutoVO();
-		novoProduto.setnomeProduto(editarNome.getText());
-		novoProduto.setprecoProduto(Double.parseDouble(editarPreco.getText()));
-		novoProduto.setcategoriaProduto(editarCategoria.getText());
+		editarNome.setText(produto.getNomeProduto());
+		editarPreco.setText(String.valueOf(produto.getPrecoProduto()));
+		editarCategoria.setText(produto.getCategoriaProduto());
+    }
+    
+    @FXML
+    void confirmarEditar(ActionEvent event) throws Exception {
+    	novoProduto = new ProdutoVO();
+    	novoProduto.setNomeProduto((editarNome.getText()));
+    	novoProduto.setPrecoProduto(Double.parseDouble(editarPreco.getText()));
+    	novoProduto.setCategoriaProduto(editarCategoria.getText());
 		
-		novoProduto.setIdProduto(produto.getIdProduto());
+    	novoProduto.setIdProduto(produto.getIdProduto());
 		pbo.alterar(novoProduto);
 		pbo.alterarPreco(novoProduto);
 		pbo.alterarCategoria(novoProduto);
@@ -100,21 +101,20 @@ public class ListaProdutosC implements Initializable{
 		oblProdutos = FXCollections.observableArrayList(produtos);
 		tabela.setItems(oblProdutos);
 		paneEditar.setVisible(false);
-	}
-
-	@FXML
-	void cancelarEditar(ActionEvent event) {
-		paneEditar.setVisible(false);
-	}
-
-	@FXML
-	void botaoCadastrar(ActionEvent event) throws Exception {
-		Telas.telaCadastroProduto();
-	}
+    }
     
+    @FXML
+    void cancelarEditar(ActionEvent event) {
+    	paneEditar.setVisible(false);
+    }
+	
+	@FXML
+    void botaoCadastrar(ActionEvent event) throws Exception {
+		Telas.telaCadastroProduto();
+    }
+
     @FXML
     void menu(ActionEvent event) throws Exception {
     	Telas.telaMenu();
     }
-
 }

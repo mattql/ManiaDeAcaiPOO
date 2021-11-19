@@ -190,6 +190,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO>{
 			try {
 				ptst = getConnection().prepareStatement(sql);
 				ptst.setString(1, vo.getEmail());
+				System.out.println(vo.getEmail());
 				rs = ptst.executeQuery();
 			} catch (SQLException e) {
 				e.printStackTrace();

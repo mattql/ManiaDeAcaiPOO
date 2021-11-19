@@ -21,10 +21,10 @@ public class ProdutoVO {
 		
 		
 		//Nome do Produto
-		public String getnomeProduto() {
+		public String getNomeProduto() {
 			return nomeProduto;
 		}
-		public void setnomeProduto(String nomeProduto) {
+		public void setNomeProduto(String nomeProduto) {
 			if (nomeProduto == null) {
 				System.out.println("Digite algo valido");
 			}
@@ -39,10 +39,10 @@ public class ProdutoVO {
 		
 		
 		//Preço do Produto
-		public double getprecoProduto() {
+		public double getPrecoProduto() {
 			return precoProduto;
 		}
-		public void setprecoProduto(double precoProduto) {
+		public void setPrecoProduto(double precoProduto) {
 			if (precoProduto <= 0) {
 					System.out.println("Digite um valor maior que 0");
 			}
@@ -52,10 +52,10 @@ public class ProdutoVO {
 		
 		
 		//Categoria do Produto
-		public String getcategoriaProduto() {
+		public String getCategoriaProduto() {
 			return categoriaProduto;
 		}
-		public void setcategoriaProduto(String categoriaProduto) {
+		public void setCategoriaProduto(String categoriaProduto) {
 			if (categoriaProduto == null) {
 				System.out.println("Digite algo valido!");
 			}

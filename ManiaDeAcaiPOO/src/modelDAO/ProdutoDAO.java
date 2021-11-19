@@ -16,9 +16,9 @@ public class ProdutoDAO extends BaseDAO<ProdutoVO>{
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ptst.setString(1, vo.getnomeProduto());
-			ptst.setDouble(2, vo.getprecoProduto());
-			ptst.setString(3, vo.getcategoriaProduto());
+			ptst.setString(1, vo.getNomeProduto());
+			ptst.setDouble(2, vo.getPrecoProduto());
+			ptst.setString(3, vo.getCategoriaProduto());
 			
 			int affectedRows = ptst.executeUpdate();
 			
@@ -54,7 +54,7 @@ public class ProdutoDAO extends BaseDAO<ProdutoVO>{
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getnomeProduto());
+			ptst.setString(1, vo.getNomeProduto());
 			ptst.setInt(2, vo.getIdProduto());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
@@ -67,7 +67,7 @@ public class ProdutoDAO extends BaseDAO<ProdutoVO>{
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setDouble(1, vo.getprecoProduto());
+			ptst.setDouble(1, vo.getPrecoProduto());
 			ptst.setInt(2, vo.getIdProduto());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
@@ -80,7 +80,7 @@ public class ProdutoDAO extends BaseDAO<ProdutoVO>{
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getcategoriaProduto());
+			ptst.setString(1, vo.getCategoriaProduto());
 			ptst.setInt(2, vo.getIdProduto());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
@@ -100,9 +100,9 @@ public class ProdutoDAO extends BaseDAO<ProdutoVO>{
 			while(rs.next()) {
 				ProdutoVO p = new ProdutoVO();
 				p.setIdProduto(rs.getInt("idProduto"));
-				p.setnomeProduto(rs.getString("nomeProduto"));
-				p.setprecoProduto(rs.getDouble("precoProduto"));
-				p.setcategoriaProduto(rs.getString("categoriaProduto"));
+				p.setNomeProduto(rs.getString("nomeProduto"));
+				p.setPrecoProduto(rs.getDouble("precoProduto"));
+				p.setCategoriaProduto(rs.getString("categoriaProduto"));
 				produtos.add(p);
 			}
 		} catch (SQLException e) {
@@ -133,7 +133,7 @@ public class ProdutoDAO extends BaseDAO<ProdutoVO>{
 		ResultSet rs = null;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getnomeProduto());
+			ptst.setString(1, vo.getNomeProduto());
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -147,7 +147,7 @@ public class ProdutoDAO extends BaseDAO<ProdutoVO>{
 			ResultSet rs = null;
 			try {
 				ptst = getConnection().prepareStatement(sql);
-				ptst.setString(1, vo.getcategoriaProduto());
+				ptst.setString(1, vo.getCategoriaProduto());
 				rs = ptst.executeQuery();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -161,7 +161,7 @@ public class ProdutoDAO extends BaseDAO<ProdutoVO>{
 			ResultSet rs = null;
 			try {
 				ptst = getConnection().prepareStatement(sql);
-				ptst.setDouble(1, vo.getprecoProduto());
+				ptst.setDouble(1, vo.getPrecoProduto());
 				rs = ptst.executeQuery();
 			} catch (SQLException e) {
 				e.printStackTrace();

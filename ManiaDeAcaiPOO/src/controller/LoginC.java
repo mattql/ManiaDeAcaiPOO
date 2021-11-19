@@ -18,7 +18,6 @@ public class LoginC {
 	@FXML private Pane paneCadastrar;
 	@FXML private TextField cadastrarLogin;
     @FXML private TextField cadastrarSenha;
-    @FXML private CheckBox checkbox;
 	
 	AdministradorBO abo = new AdministradorBO();
 	AdministradorVO vo = new AdministradorVO();
@@ -58,15 +57,5 @@ public class LoginC {
     	vo.setSenha(cadastrarSenha.getText());
     	abo.cadastrar(vo);
     	cancelarCadastro(event);
-    }
-    
-    @FXML
-    void mostrarSenha(ActionEvent event) {
-    	if(checkbox.isSelected()) {
-    		//senha.sete
-    	}
-    	else {
-    		senha.setVisible(false);
-    	}
     }
 }
