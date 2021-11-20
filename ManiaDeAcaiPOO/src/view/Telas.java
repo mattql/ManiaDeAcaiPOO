@@ -111,6 +111,14 @@ public class Telas extends Application{
 		
 		primaryStage.setScene(cena);
 	}
+	
+	public static void telaGerarRelatorio() throws Exception{
+		Parent root = FXMLLoader.load(Telas.class.getResource("GerarRelatorio.fxml"));
+		
+		Scene cena = new Scene(root);
+		
+		primaryStage.setScene(cena);
+	}
 		
 	public static void main(String [] args) {
 		launch();

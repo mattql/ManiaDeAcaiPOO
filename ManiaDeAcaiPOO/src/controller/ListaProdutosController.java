@@ -9,12 +9,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import modelBO.ProdutoBO;
+import modelVO.ClienteVO;
 import modelVO.ProdutoVO;
 import view.Telas;
 
@@ -30,7 +32,9 @@ public class ListaProdutosController implements Initializable{
     @FXML private TextField editarCategoria;
     @FXML private Pane paneExcluir;
     @FXML private Pane paneEditar;
-    
+    @FXML private TextField campoPesquisar;
+    @FXML private ComboBox<String> selecionarTipoPesquisa;
+       
     ProdutoBO pbo = new ProdutoBO();
 	
 	private List<ProdutoVO> produtos;
@@ -38,6 +42,11 @@ public class ListaProdutosController implements Initializable{
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		listar();
+		preencherCombobox();
+	}
+	
+	public void listar() {
 		id.setCellValueFactory(new PropertyValueFactory<>("idProduto"));
 		nome.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
 		preco.setCellValueFactory(new PropertyValueFactory<>("precoProduto"));
@@ -112,6 +121,56 @@ public class ListaProdutosController implements Initializable{
     void botaoCadastrar(ActionEvent event) throws Exception {
 		Telas.telaCadastroProduto();
     }
+	
+	@FXML
+    void botaoPesquisar(ActionEvent event) {
+		String selectComboBox = selecionarTipoPesquisa.getSelectionModel().getSelectedItem();
+		if(selectComboBox == "Nome") {
+			ProdutoVO nomeProduto = new ProdutoVO();
+			nomeProduto.setNomeProduto(campoPesquisar.getText());
+			ObservableList<ProdutoVO> listarNomeProduto;
+			id.setCellValueFactory(new PropertyValueFactory<>("idProduto"));
+			nome.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
+			preco.setCellValueFactory(new PropertyValueFactory<>("precoProduto"));
+			categoria.setCellValueFactory(new PropertyValueFactory<>("categoriaProduto"));
+
+			
+			try {
+				produtos = pbo.buscarPorNome(nomeProduto);
+				listarNomeProduto = FXCollections.observableArrayList(produtos);
+				tabela.setItems(listarNomeProduto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(selectComboBox == "Categoria") {
+			ProdutoVO catProduto = new ProdutoVO();
+			catProduto.setCategoriaProduto(campoPesquisar.getText());
+			ObservableList<ProdutoVO> listarCategoriaProduto;
+			id.setCellValueFactory(new PropertyValueFactory<>("idProduto"));
+			nome.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
+			preco.setCellValueFactory(new PropertyValueFactory<>("precoProduto"));
+			categoria.setCellValueFactory(new PropertyValueFactory<>("categoriaProduto"));
+			
+			try {
+				produtos = pbo.buscarPorCategoria(catProduto);
+				listarCategoriaProduto = FXCollections.observableArrayList(produtos);
+				tabela.setItems(listarCategoriaProduto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if (selectComboBox == "") {
+			listar();
+		}
+    }
+	
+	public void preencherCombobox() {
+		ObservableList<String> pesquisa = FXCollections.observableArrayList("Nome", "Categoria", "");
+		selecionarTipoPesquisa.setItems(pesquisa);	
+	}
 
     @FXML
     void menu(ActionEvent event) throws Exception {

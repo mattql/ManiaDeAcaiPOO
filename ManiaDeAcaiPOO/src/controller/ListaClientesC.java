@@ -34,8 +34,6 @@ public class ListaClientesC implements Initializable{
     @FXML private TextField campoPesquisar;
     @FXML private ComboBox<String> selecionarTipoPesquisa;
     
-
-
 	ClienteBO cbo = new ClienteBO();
 	
 	private List<ClienteVO> clientes;
@@ -152,7 +150,7 @@ public class ListaClientesC implements Initializable{
 		else if(selectComboBox == "Telefone") {
 			ClienteVO telCliente = new ClienteVO();
 			telCliente.setTelefone(campoPesquisar.getText());
-			
+			ObservableList<ClienteVO> listarTelefoneCliente;
 			id.setCellValueFactory(new PropertyValueFactory<>("idPessoa"));
 			nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 			endereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
@@ -161,8 +159,8 @@ public class ListaClientesC implements Initializable{
 			
 			try {
 				clientes = cbo.buscarPorTelefone(telCliente);
-				oblClientes = FXCollections.observableArrayList(clientes);
-				tabela.setItems(oblClientes);
+				listarTelefoneCliente = FXCollections.observableArrayList(clientes);
+				tabela.setItems(listarTelefoneCliente);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -194,8 +192,7 @@ public class ListaClientesC implements Initializable{
 	
 	public void preencherCombobox() {
 		ObservableList<String> pesquisa = FXCollections.observableArrayList("Nome", "Telefone", "Email", "");
-		selecionarTipoPesquisa.setItems(pesquisa);
-		
+		selecionarTipoPesquisa.setItems(pesquisa);	
 	}
 	
 	@FXML

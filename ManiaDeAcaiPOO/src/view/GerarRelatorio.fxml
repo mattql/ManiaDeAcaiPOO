@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: FFFEE9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GerarRelatorioC">
+   <children>
+      <Region layoutX="146.0" layoutY="188.0" prefHeight="489.0" prefWidth="994.0" style="-fx-background-color: #964BF6; -fx-background-radius: 8;" />
+      <ImageView fitHeight="235.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagens/Cabeçalho%20Geral.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="513.0" layoutY="209.0" text="Gerar Relatório" textFill="GOLD">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+      <Button layoutX="428.0" layoutY="541.0" mnemonicParsing="false" onAction="#botaoConfirmar" prefHeight="45.0" prefWidth="148.0" style="-fx-background-color: #ffd700; -fx-background-radius: 10; -fx-border-color: b89b00; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="✔ Confirmar">
+         <font>
+            <Font name="Roboto" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="715.0" layoutY="541.0" mnemonicParsing="false" onAction="#botaoCancelar" prefHeight="45.0" prefWidth="148.0" style="-fx-background-color: #ca257b; -fx-background-radius: 10; -fx-border-color: a41361; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="❌ Cancelar">
+         <font>
+            <Font name="Roboto" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="505.0" layoutY="298.0" text="Dia:" textFill="#fec909">
+         <font>
+            <Font name="Roboto" size="24.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="569.0" layoutY="299.0" prefHeight="29.0" prefWidth="272.0" promptText="Selecione uma opção" style="-fx-background-color: #ffffff; -fx-background-radius: 88;" />
+      <ComboBox layoutX="569.0" layoutY="370.0" prefHeight="29.0" prefWidth="272.0" promptText="Selecione uma opção" style="-fx-background-color: #ffffff; -fx-background-radius: 88;" />
+      <Label layoutX="505.0" layoutY="369.0" text="Mês:" textFill="#fec909">
+         <font>
+            <Font name="Roboto" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="505.0" layoutY="442.0" text="Relatório semanal" textFill="#fec909">
+         <font>
+            <Font name="Roboto" size="24.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="433.0" layoutY="304.0" mnemonicParsing="false" />
+      <RadioButton layoutX="433.0" layoutY="375.0" mnemonicParsing="false" />
+      <RadioButton layoutX="433.0" layoutY="448.0" mnemonicParsing="false" />
+   </children>
+</Pane>

@@ -140,7 +140,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 				fun.setNome(rs.getString("nomefuncionario"));
 				fun.setEndereco(rs.getString("enderecofuncionario"));
 				fun.setTelefone(rs.getString("telefonefuncionario"));
-				fun.setSalario(rs.getDouble("slariofuncionario"));
+				fun.setSalario(rs.getDouble("salariofuncionario"));
 				funcionarios.add(fun);
 			}
 			if(funcionarios.isEmpty()) {
@@ -164,7 +164,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 				fun.setNome(rs.getString("nomefuncionario"));
 				fun.setEndereco(rs.getString("enderecofuncionario"));
 				fun.setTelefone(rs.getString("telefonefuncionario"));
-				fun.setSalario(rs.getDouble("slariofuncionario"));
+				fun.setSalario(rs.getDouble("salariofuncionario"));
 				funcionarios.add(fun);
 			}
 			if(funcionarios.isEmpty()) {
@@ -187,7 +187,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 				fun.setNome(rs.getString("nomefuncionario"));
 				fun.setEndereco(rs.getString("enderecofuncionario"));
 				fun.setTelefone(rs.getString("telefonefuncionario"));
-				fun.setSalario(rs.getDouble("slariofuncionario"));
+				fun.setSalario(rs.getDouble("salariofuncionario"));
 				funcionarios.add(fun);
 			}
 			if(funcionarios.isEmpty()) {
@@ -210,7 +210,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 				fun.setNome(rs.getString("nomefuncionario"));
 				fun.setEndereco(rs.getString("enderecofuncionario"));
 				fun.setTelefone(rs.getString("telefonefuncionario"));
-				fun.setSalario(rs.getDouble("slariofuncionario"));
+				fun.setSalario(rs.getDouble("salariofuncionario"));
 				funcionarios.add(fun);
 			}
 			if(funcionarios.isEmpty()) {
@@ -233,7 +233,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 				fun.setNome(rs.getString("nomefuncionario"));
 				fun.setEndereco(rs.getString("enderecofuncionario"));
 				fun.setTelefone(rs.getString("telefonefuncionario"));
-				fun.setSalario(rs.getDouble("slariofuncionario"));
+				fun.setSalario(rs.getDouble("salariofuncionario"));
 				funcionarios.add(fun);
 			}
 			if(funcionarios.isEmpty()) {

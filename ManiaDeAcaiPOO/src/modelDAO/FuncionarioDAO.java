@@ -176,7 +176,7 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO>{
 	
 	public ResultSet pesquisarPorSalario(FuncionarioVO vo) {
 		// TODO Auto-generated method stub
-		String sql = "select * from Funcionario where salarioFuncionario = ?";
+		String sql = "select * from Funcionario where salariofuncionario = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		try {

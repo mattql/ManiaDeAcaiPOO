@@ -32,8 +32,8 @@ public class MenuC {
     }
 
     @FXML
-    void abrirTelaRelatorio(ActionEvent event) {
-    	//Telas.telaGerarRelatorio();
+    void abrirTelaRelatorio(ActionEvent event) throws Exception {
+    	Telas.telaGerarRelatorio();
     }
 
     @FXML
