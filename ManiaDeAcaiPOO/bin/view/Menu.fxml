@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: FFFEE9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuC">
+   <children>
+      <Region layoutX="146.0" layoutY="188.0" prefHeight="489.0" prefWidth="994.0" style="-fx-background-color: caa4ef; -fx-background-radius: 8;" />
+      <ImageView fitHeight="235.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagens/Cabeçalho%20Geral.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="397.0" layoutY="287.0" mnemonicParsing="false" onAction="#abrirTelaPedidos" prefHeight="45.0" prefWidth="487.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #964bf6; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="Pedidos" textFill="#964bf6">
+         <font>
+            <Font name="Roboto" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="397.0" layoutY="361.0" mnemonicParsing="false" onAction="#abrirTelaProdutos" prefHeight="45.0" prefWidth="487.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #964bf6; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="Produtos" textFill="#964bf6">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Roboto" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="397.0" layoutY="434.0" mnemonicParsing="false" onAction="#abrirTelaClientes" prefHeight="51.0" prefWidth="487.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #964bf6; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="Clientes" textFill="#964bf6">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Roboto" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="162.0" layoutY="608.0" mnemonicParsing="false" onAction="#abrirTelaRealizarPedidos" prefHeight="53.0" prefWidth="177.0" style="-fx-background-color: #ffd700; -fx-background-radius: 10; -fx-border-color: b89b00; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="➕ Realizar Pedido">
+         <font>
+            <Font name="Roboto" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="976.0" layoutY="608.0" mnemonicParsing="false" onAction="#logout" prefHeight="53.0" prefWidth="148.0" style="-fx-background-color: #ca257b; -fx-background-radius: 10; -fx-border-color: a41361; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="➜ Logout">
+         <font>
+            <Font name="Roboto" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="397.0" layoutY="506.0" mnemonicParsing="false" onAction="#abrirTelaFuncionarios" prefHeight="51.0" prefWidth="487.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #964bf6; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="Funcionários" textFill="#964bf6">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Roboto" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="397.0" layoutY="579.0" mnemonicParsing="false" onAction="#abrirTelaRelatorio" prefHeight="51.0" prefWidth="487.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #964bf6; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-insets: -1;" text="Relatório" textFill="#964bf6">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Roboto" size="24.0" />
+         </font>
+      </Button>
+      <Label layoutX="591.0" layoutY="209.0" text="Menu" textFill="GOLD">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
